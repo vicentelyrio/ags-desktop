@@ -1,0 +1,24 @@
+{
+  "name": "Ags",
+  "version": "0.0.0",
+  "main": "./config.js",
+  "author": {
+    "name": "vicentelyrio",
+    "email": "vicentelyrio@gmail.com"
+  },
+  "license": "MIT",
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+  "scripts": {
+    "build": "tsc ./config.ts"
+  },
+  "dependencies": {
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@girs/cairo-1.0": "^1.0.0-3.3.0",
+    "@girs/gjs": "^3.3.0",
+    "dayjs": "^1.11.11",
+    "esbuild": "^0.20.2",
+    "sass": "^1.76.0"
+  }
+}

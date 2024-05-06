@@ -1,26 +1,18 @@
-const time = Variable('', {
-    poll: [1000, function() {
-        return Date().toString()
-    }],
-})
+const entry = `${App.configDir}/src/main.ts`
+const destFile = '/tmp/ags/js/main.js'
 
-const Bar = (/** @type {number} */ monitor) => Widget.Window({
-    monitor,
-    name: `bar${monitor}`,
-    anchor: ['top', 'left', 'right'],
-    exclusivity: 'exclusive',
-    child: Widget.CenterBox({
-        start_widget: Widget.Label({
-            hpack: 'center',
-            label: 'Welcome to AGS!',
-        }),
-        end_widget: Widget.Label({
-            hpack: 'center',
-            label: time.bind(),
-        }),
-    }),
-})
-
-App.config({
-    windows: [Bar(0)],
-})
+try {
+  await Utils.execAsync([
+    './node_modules/esbuild/bin/esbuild',
+    '--bundle',
+    entry,
+    '--format=esm',
+    `--outfile=${destFile}`,
+    '--external:resource://*',
+    '--external:gi://*',
+    '--external:file://*',
+  ])
+  await import(`file://${destFile}`)
+} catch (error) {
+  console.error(error)
+}
