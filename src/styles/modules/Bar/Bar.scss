@@ -2,12 +2,15 @@ $bar-bg: $crust;
 $bar-h: 30px;
 
 $bar-logo-bg: $mauve;
-$bar-logo-p: 22px;
+$bar-logo-p: 0 22px;
 
 $bar-ws-icon-bg: $surface1;
 $bar-ws-icon-bg-hover: $surface1;
 $bar-ws-icon-bg-active: $crust;
 $bar-ws-icon-bg-selected: $mauve;
+$bar-ws-icon-space: 2px;
+
+$bar-clock-p: 0 22px;
 
 // Window
 .bar {}
@@ -20,7 +23,7 @@ $bar-ws-icon-bg-selected: $mauve;
 
 .bar__logo {
   color: $bar-logo-bg;
-  padding: 0 $bar-logo-p;
+  padding: $bar-logo-p;
 }
 
 // workspace
@@ -30,6 +33,7 @@ $bar-ws-icon-bg-selected: $mauve;
 
 .bar__ws__icon {
   color: $bar-ws-icon-bg;
+  margin: 0 $bar-ws-icon-space;
 
   &:hover {
     color: $bar-ws-icon-bg-hover;
@@ -44,6 +48,19 @@ $bar-ws-icon-bg-selected: $mauve;
   }
 }
 
+// Clock
+.bar__clock {
+  font-weight: bold;
+  padding: $bar-clock-p;
+}
+
+.bar__clock__date {
+  min-width: 70px;
+}
+
+.bar__clock__time {
+  min-width: 30px;
+}
 
 // label {
 //   font-weight: bold;

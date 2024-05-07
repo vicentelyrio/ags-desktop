@@ -14,8 +14,8 @@ export function Workspaces() {
           onPrimaryClick: () => hyprland.messageAsync(`dispatch workspace ${id}`),
           child: Widget.Icon({
             icon: 'dot-symbolic',
-            class_name: activeId.as(i => (
-              `${i === id ? 'bar__ws__icon--selected' : 'bar__ws__icon'}`
+            className: activeId.as(i => (
+              `${i === id ? 'bar__ws__icon bar__ws__icon--selected' : 'bar__ws__icon'}`
             )),
             size: 16
           })
@@ -26,7 +26,6 @@ export function Workspaces() {
   return Widget.Box({
     className: 'bar__ws',
     children: workspaces as any,
-    spacing: 4
   })
 }
 
