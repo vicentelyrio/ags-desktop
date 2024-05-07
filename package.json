@@ -15,11 +15,13 @@
     "dev:sass": "yarn build:sass --watch"
   },
   "devDependencies": {
+    "@catppuccin/palette": "^1.1.1",
     "@girs/cairo-1.0": "^1.0.0-3.3.0",
     "@girs/gjs": "^3.3.0",
     "dayjs": "^1.11.11",
     "esbuild": "^0.20.2",
     "sass": "^1.76.0",
     "typescript": "^5.4.5"
-  }
+  },
+  "dependencies": {}
 }

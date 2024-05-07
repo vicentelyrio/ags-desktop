@@ -12,7 +12,7 @@
     "noImplicitAny": false,
     "baseUrl": ".",
     "typeRoots": [
-      "./@types"
+      "./types"
     ],
     "skipLibCheck": true
   },

@@ -1,31 +1,53 @@
-window.bar {
-  background-color: purple;
-  color: white;
+$bar-bg: $crust;
+$bar-h: 30px;
+
+$bar-logo-bg: $mauve;
+$bar-logo-p: 22px;
+
+$bar-ws-icon-bg: $surface1;
+$bar-ws-icon-bg-hover: $surface1;
+$bar-ws-icon-bg-active: $crust;
+$bar-ws-icon-bg-selected: $mauve;
+
+// Window
+.bar {}
+
+// Wrapper
+.bar__wrapper {
+  background-color: $bar-bg;
+  min-height: $bar-h;
 }
 
-// button {
-//   min-width: 0;
-//   padding-top: 0;
-//   padding-bottom: 0;
-//   background-color: transparent;
-// }
-//
-// button:active {
-//   background-color: @theme_selected_bg_color;
-// }
-//
-// button:hover {
-//   border-bottom: 3px solid @theme_fg_color;
-// }
-//
+.bar__logo {
+  color: $bar-logo-bg;
+  padding: 0 $bar-logo-p;
+}
+
+// workspace
+.bar__ws {}
+
+.bar__ws__btn {}
+
+.bar__ws__icon {
+  color: $bar-ws-icon-bg;
+
+  &:hover {
+    color: $bar-ws-icon-bg-hover;
+  }
+
+  &:active {
+    color: $bar-ws-icon-bg-active;
+  }
+
+  &--selected {
+    color: $bar-ws-icon-bg-selected;
+  }
+}
+
+
 // label {
 //   font-weight: bold;
 // }
-//
-// .workspaces button.focused {
-//   border-bottom: 3px solid @theme_selected_bg_color;
-// }
-//
 // .client-title {
 //   color: @theme_selected_bg_color;
 // }

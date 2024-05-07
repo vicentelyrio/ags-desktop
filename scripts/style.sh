@@ -5,5 +5,5 @@ buildStyle() {
 }
 
 reloadStyle() {
-  ags -b $BUS_NAME --run-js "App.resetCss(); App.applyCss('$DEST_STYLE');"
+  ags --run-js "App.resetCss(); App.applyCss('$DEST_STYLE');"
 }

@@ -5,6 +5,6 @@ buildCode() {
 }
 
 reloadCode() {
-  ags -b $BUS_NAME -q
-  ags -b $BUS_NAME -c $DEST_FILE &
+  ags -q
+  ags -c $DEST_FILE &
 }
