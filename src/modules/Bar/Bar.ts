@@ -5,6 +5,7 @@ import { Bluetooth } from './components/Bluetooth'
 import { Systray } from './components/Systray'
 import { Volume } from './components/Volume'
 import { Notification } from './components/Notification'
+import { Brightness } from './components/Brightness'
 
 // const hyprland = await Service.import('hyprland')
 // const mpris = await Service.import('mpris')
@@ -65,6 +66,7 @@ function Right() {
   return Widget.Box({
     hpack: 'end',
     children: [
+      Brightness(),
       Volume(),
       // BatteryLabel(),
       Bluetooth(),
