@@ -7,13 +7,6 @@
   },
   "license": "MIT",
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
-  "scripts": {
-    "build:ts": "esbuild ./src/main.ts --outdir=./build --bundle --format=esm --external:resource://* --external:gi://* --external:file://*",
-    "build:sass": "sass ./src/styles/main.scss ./build/main.css",
-    "build": "yarn build:ts && yarn build:sass",
-    "dev:ts": "yarn build:ts --watch",
-    "dev:sass": "yarn build:sass --watch"
-  },
   "devDependencies": {
     "@catppuccin/palette": "^1.1.1",
     "@girs/cairo-1.0": "^1.0.0-3.3.0",

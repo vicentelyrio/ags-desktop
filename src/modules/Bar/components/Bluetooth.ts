@@ -13,11 +13,14 @@ export function Bluetooth() {
   //   }, 'notify::connected-devices'),
   // })
 
-  const indicator = Widget.Icon({
-    icon: bluetooth.bind('enabled').as(on =>
-      `bluetooth-${on ? 'active' : 'disabled'}-symbolic`),
-    size: 16
+  return Widget.EventBox({
+    onPrimaryClick: () => {
+      Utils.exec(`hyprctl dispatch -- exec overskride`)
+    },
+    child: Widget.Icon({
+      icon: bluetooth.bind('enabled').as(on => `bluetooth-${on ? 'active' : 'disabled'}-symbolic`),
+      className: 'bar__bluetooth_icon',
+      size: 16
+    })
   })
-
-  return indicator
 }

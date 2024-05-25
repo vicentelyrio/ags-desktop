@@ -7,8 +7,8 @@ const date = Variable('', {
 })
 
 const time = Variable('', {
-  poll: [2000, function() {
-    return dayjs().format('HH:MM')
+  poll: [1000, function() {
+    return dayjs().format('HH:mm:ss')
   }]
 })
 
@@ -18,6 +18,12 @@ export function Clock() {
       spacing: 16,
       className: 'bar__clock',
       children: [
+        Widget.EventBox({
+          child: Widget.Icon({
+            class_name: 'bar__clock__icon',
+            icon: 'x-office-calendar-symbolic',
+          }),
+        }),
         Widget.EventBox({
           child: Widget.Label({
             className: 'bar__clock__date',

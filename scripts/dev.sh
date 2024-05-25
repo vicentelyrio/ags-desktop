@@ -16,8 +16,8 @@ buildCode
 buildStyle
 
 # start resources
-reloadCode
-reloadStyle
+loadCode
+loadStyle
 
 # watch for changes on src
 inotifywait -m $WORK_DIR -e create,modify,delete -r |
@@ -25,19 +25,19 @@ inotifywait -m $WORK_DIR -e create,modify,delete -r |
     case "$file" in
       (*.svg)
         copyAssets
-        reloadCode
+        loadCode
       ;;
     esac
     case "$file" in
       (*.ts)
         buildCode
-        reloadCode
+        loadCode
       ;;
     esac
     case "$file" in
       (*.scss)
         buildStyle
-        reloadStyle
+        loadStyle
       ;;
     esac
   done

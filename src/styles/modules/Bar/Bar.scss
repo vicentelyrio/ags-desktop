@@ -1,5 +1,8 @@
-$bar-bg: $crust;
+@import '../../mixins.scss';
+
+$bar-bg: rgba(0, 0, 0, .5);
 $bar-h: 30px;
+$bar-p: 6px;
 
 $bar-logo-bg: $mauve;
 $bar-logo-p: 0 22px;
@@ -19,8 +22,16 @@ $bar-clock-p: 0 22px;
 .bar__wrapper {
   background-color: $bar-bg;
   min-height: $bar-h;
+  padding: $bar-p;
 }
 
+// Sections
+.bar__left {}
+
+.bar__right {}
+
+
+// Logo
 .bar__logo {
   color: $bar-logo-bg;
   padding: $bar-logo-p;
@@ -48,6 +59,24 @@ $bar-clock-p: 0 22px;
   }
 }
 
+// Volume
+.bar__volume {
+  min-width: 100px;
+}
+
+.bar__volume__slider {
+  @include slider;
+}
+
+// Brightness
+.bar__brightness {
+  min-width: 100px;
+}
+
+.bar__brightness__slider {
+  @include slider;
+}
+
 // Clock
 .bar__clock {
   font-weight: bold;
@@ -55,12 +84,14 @@ $bar-clock-p: 0 22px;
 }
 
 .bar__clock__date {
-  min-width: 70px;
+  min-width: 86px;
 }
 
 .bar__clock__time {
-  min-width: 30px;
+  min-width: 64px;
 }
+
+
 
 // label {
 //   font-weight: bold;

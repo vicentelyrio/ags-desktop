@@ -11,7 +11,9 @@ export function Workspaces() {
         Widget.EventBox({
           cursor: 'pointer',
           className: 'bar__ws__btn',
-          onPrimaryClick: () => hyprland.messageAsync(`dispatch workspace ${id}`),
+          onPrimaryClick: () => {
+            hyprland.messageAsync(`dispatch workspace ${id}`)
+          },
           child: Widget.Icon({
             icon: 'dot-symbolic',
             className: activeId.as(i => (

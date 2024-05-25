@@ -1,0 +1,23 @@
+@mixin slider($bg: $crust, $fg: $mauve, $height: 10px, $radius: 10px) {
+  trough {
+    border-radius: 10px;
+    background-color: $bg;
+    min-height: 10px;
+  }
+
+  trough highlight {
+    background: $fg;
+    border-radius: 10px;
+    transition: none;
+  }
+
+  slider {
+    box-shadow: none;
+    background-color: transparent;
+    border: 0 solid transparent;
+    border-radius: 10px;
+    min-height: 10px;
+    margin: 0;
+  }
+}
+

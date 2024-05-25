@@ -41,9 +41,10 @@ import { Brightness } from './components/Brightness'
 //   })
 // }
 
-// layout of the bar
 function Left() {
   return Widget.Box({
+    className: 'bar__left',
+    spacing: 16,
     children: [
       SystemLogo(),
       Workspaces(),
@@ -52,37 +53,32 @@ function Left() {
   })
 }
 
-// function Center() {
-//   return Widget.Box({
-//     spacing: 8,
-//     children: [
-//       Media(),
-//       Notification(),
-//     ],
-//   })
-// }
-//
-function Right() {
+function Center() {
   return Widget.Box({
-    hpack: 'end',
+    className: 'bar__left',
+    spacing: 8,
     children: [
-      Brightness(),
-      Volume(),
-      // BatteryLabel(),
-      Bluetooth(),
-      Systray(),
+      // Media(),
       Notification(),
-      Clock(),
-      // SysTray(),
+      Systray(),
     ],
   })
 }
 
-// const time = Variable('', {
-//   poll: [1000, function() {
-//     return dayjs().format('L')
-//   }],
-// })
+function Right() {
+  return Widget.Box({
+    className: 'bar__right',
+    hpack: 'end',
+    spacing: 16,
+    children: [
+      Bluetooth(),
+      Notification(),
+      Brightness(),
+      Volume(),
+      Clock(),
+    ],
+  })
+}
 
 export function Bar(monitor = 0) {
   return Widget.Window({
@@ -94,7 +90,7 @@ export function Bar(monitor = 0) {
     child: Widget.CenterBox({
       className: 'bar__wrapper',
       start_widget: Left(),
-      // center_widget: Center(),
+      center_widget: Center(),
       end_widget: Right(),
     }),
   })

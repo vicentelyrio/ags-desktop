@@ -1,48 +1,57 @@
+import { debounce } from "src/utils/debounce"
+
 type CallbackType = (_: any, ...args: any) => void
 
 class BrightnessService extends Service {
   static {
     Service.register(
       this,
-      { 'screen-changed': ['float'] },
-      { 'screen-value': ['float', 'rw'] },
+      { 'intensity-changed': ['float'] },
+      { 'intensity': ['float', 'rw'] },
     )
   }
 
+  #setScreenValueDebounced: (percent: number) => void
   #interface = Utils.exec("sh -c 'ls -w1 /sys/class/backlight | head -1'")
-  #screenValue = 0
-  #max = Number(Utils.exec('brightnessctl max'))
-
-  get screen_value() {
-    return this.#screenValue
-  }
-
-  set screen_value(percent) {
-    if (percent < 0) percent = 0
-    if (percent > 1) percent = 1
-
-    Utils.execAsync(`brightnessctl set ${percent * 100}% -q`)
-  }
+  #store = `/sys/class/backlight/${this.#interface}/brightness`
+  #intensity = 0
 
   constructor() {
     super()
 
-    const brightness = `/sys/class/backlight/${this.#interface}/brightness`
-    Utils.monitorFile(brightness, () => this.#onChange())
+    // Monitor external changes
+    Utils.monitorFile(this.#store, () => this.#onChange())
+
+    // update #screenValue at start
     this.#onChange()
+
+    // Debounce setter
+    this.#setScreenValueDebounced = debounce(this.#setScreenValue.bind(this))
+  }
+
+  get intensity() {
+    return this.#intensity
+  }
+
+  set intensity(percent) {
+    percent = Math.max(0, Math.min(percent, 100))
+
+    this.#setScreenValueDebounced(percent)
+  }
+
+  #setScreenValue(percent: number) {
+    Utils.execAsync(`light -S ${percent}`)
   }
 
   #onChange() {
-    this.#screenValue = Number(Utils.exec('brightnessctl get')) / this.#max
+    this.#intensity = parseInt(Utils.exec('light'))
+
     this.emit('changed')
-    this.notify('screen-value')
-
-    // this.changed('screen-value')
-
-    this.emit('screen-changed', this.#screenValue)
+    this.notify('intensity')
+    this.emit('intensity-changed', this.#intensity)
   }
 
-  connect(event = 'screen-changed', callback: CallbackType) {
+  connect(event = 'intensity-changed', callback: CallbackType) {
     return super.connect(event, callback)
   }
 }
