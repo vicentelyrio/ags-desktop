@@ -6,18 +6,10 @@ import { Systray } from './components/Systray'
 import { Volume } from './components/Volume'
 import { Notification } from './components/Notification'
 import { Brightness } from './components/Brightness'
+import { Client } from './components/Client'
 
-// const hyprland = await Service.import('hyprland')
 // const mpris = await Service.import('mpris')
 // const battery = await Service.import('battery')
-
-
-// function ClientTitle() {
-//   return Widget.Label({
-//     class_name: 'client-title',
-//     label: hyprland.active.client.bind('title'),
-//   })
-// }
 
 // we don't need dunst or any other notification daemon
 // because the Notifications module is a notification daemon itself
@@ -48,7 +40,7 @@ function Left() {
     children: [
       SystemLogo(),
       Workspaces(),
-      // ClientTitle(),
+      Client(),
     ],
   })
 }
