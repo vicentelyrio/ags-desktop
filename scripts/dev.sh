@@ -16,7 +16,7 @@ buildCode
 buildStyle
 
 # start resources
-loadCode
+loadCode &
 loadStyle
 
 # watch for changes on src
@@ -31,7 +31,7 @@ inotifywait -m $WORK_DIR -e create,modify,delete -r |
     case "$file" in
       (*.ts)
         buildCode
-        loadCode
+        loadCode &
       ;;
     esac
     case "$file" in
