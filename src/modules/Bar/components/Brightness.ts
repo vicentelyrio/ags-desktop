@@ -21,7 +21,7 @@ export function Brightness() {
   const icon = Widget.Icon({
     class_name: 'bar__volume__icon',
     icon: Utils.watch(getIcon(), brightness, getIcon),
-    size: 30
+    size: 22
   })
 
   const slider = Widget.Slider({
