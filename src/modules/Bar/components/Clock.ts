@@ -7,8 +7,8 @@ const date = Variable('', {
 })
 
 const time = Variable('', {
-  poll: [1000, function() {
-    return dayjs().format('HH:mm:ss')
+  poll: [2000, function() {
+    return dayjs().format('HH:mm')
   }]
 })
 

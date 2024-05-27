@@ -17,16 +17,22 @@ export function Volume() {
     return `audio-volume-${icons[icon ?? 34]}-symbolic`
   }
 
-  const icon = Widget.Icon({
-    class_name: 'bar__volume__icon',
-    icon: Utils.watch(getIcon(), audio.speaker, getIcon),
+  const icon = Widget.EventBox({
+    onPrimaryClick: () => Utils.exec('pamixer -t'),
+    child: Widget.Icon({
+      class_name: 'bar__volume__icon',
+      icon: Utils.watch(getIcon(), audio.speaker, getIcon),
+    })
   })
 
   const slider = Widget.Slider({
     class_name: 'bar__volume__slider',
     hexpand: true,
     draw_value: false,
-    on_change: ({ value }) => audio.speaker.volume = value,
+    on_change: ({ value }) => {
+      if (value > audio.speaker.volume) Utils.exec('pamixer -u')
+      audio.speaker.volume = value
+    },
     setup: self => self.hook(audio.speaker, () => {
       self.value = audio.speaker.volume || 0
     }),

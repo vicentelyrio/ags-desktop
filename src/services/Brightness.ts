@@ -40,7 +40,7 @@ class BrightnessService extends Service {
   }
 
   #setScreenValue(percent: number) {
-    Utils.execAsync(`light -S ${percent}`)
+    Utils.exec(`light -S ${percent}`)
   }
 
   #onChange() {

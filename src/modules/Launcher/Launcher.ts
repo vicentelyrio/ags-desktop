@@ -9,6 +9,7 @@ const AppItem = (app: any) => Widget.Button({
   },
   attribute: { app },
   child: Widget.Box({
+    spacing: 8,
     children: [
       Widget.Icon({
         icon: app.icon_name || '',
@@ -72,8 +73,7 @@ const Applauncher = ({ width = 500, height = 500, spacing = 12 }) => {
       // wrap the list in a scrollable
       Widget.Scrollable({
         hscroll: 'never',
-        css: `min-width: ${width}px;`
-          + `min-height: ${height}px;`,
+        css: `min-width: ${width}px;` + `min-height: ${height}px;`,
         child: list,
       }),
     ],
@@ -91,7 +91,6 @@ const Applauncher = ({ width = 500, height = 500, spacing = 12 }) => {
   })
 }
 
-// there needs to be only one instance
 export const Launcher = Widget.Window({
   name: WINDOW_NAME,
   setup: self => self.keybind('Escape', () => {
