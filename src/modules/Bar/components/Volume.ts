@@ -20,6 +20,7 @@ export function Volume() {
   const icon = Widget.EventBox({
     onPrimaryClick: () => Utils.exec('pamixer -t'),
     child: Widget.Icon({
+      size: 16,
       class_name: 'bar__volume__icon',
       icon: Utils.watch(getIcon(), audio.speaker, getIcon),
     })

@@ -7,6 +7,9 @@ import { Volume } from './components/Volume'
 import { Notification } from './components/Notification'
 import { Brightness } from './components/Brightness'
 import { Client } from './components/Client'
+import { Divider } from './components/Divider'
+
+const hyprland = await Service.import('hyprland')
 
 // const mpris = await Service.import('mpris')
 // const battery = await Service.import('battery')
@@ -51,8 +54,6 @@ function Center() {
     spacing: 8,
     children: [
       // Media(),
-      Notification(),
-      Systray(),
     ],
   })
 }
@@ -63,10 +64,14 @@ function Right() {
     hpack: 'end',
     spacing: 16,
     children: [
-      Bluetooth(),
       Notification(),
+      Systray(),
+      Divider(),
+      Bluetooth(),
+      Divider(),
       Brightness(),
       Volume(),
+      Divider(),
       Clock(),
     ],
   })
@@ -80,7 +85,18 @@ export function Bar(monitor = 0) {
     anchor: ['top', 'left', 'right'],
     exclusivity: 'exclusive',
     child: Widget.CenterBox({
-      className: 'bar__wrapper',
+      setup: (self) => {
+        self.hook(hyprland, () => {
+          const currentWS = hyprland.getWorkspace(hyprland.active.workspace.id)
+          const currentEmpty = (currentWS?.windows ?? 0) === 0
+          const special = hyprland.getWorkspace(-98)
+          const specialEmpty = (special?.windows ?? 0) === 0
+
+          const hideBg = special ? (specialEmpty && currentEmpty) : currentEmpty
+
+          self.class_name = hideBg ? 'bar__wrapper bar__wrapper--empty' : 'bar__wrapper'
+        })
+      },
       start_widget: Left(),
       center_widget: Center(),
       end_widget: Right(),

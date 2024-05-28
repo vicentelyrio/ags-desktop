@@ -1,13 +1,13 @@
-@mixin slider($bg: $crust, $fg: $mauve, $height: 10px, $radius: 10px) {
+@mixin slider($bg: $slider-bg, $fg: $slider-fg, $height: $slider-h, $radius: $slider-br) {
   trough {
-    border-radius: 10px;
+    border-radius: $radius;
     background-color: $bg;
-    min-height: 10px;
+    min-height: $height;
   }
 
   trough highlight {
     background: $fg;
-    border-radius: 10px;
+    border-radius: $radius;
     transition: none;
   }
 
@@ -15,8 +15,8 @@
     box-shadow: none;
     background-color: transparent;
     border: 0 solid transparent;
-    border-radius: 10px;
-    min-height: 10px;
+    border-radius: $radius;
+    min-height: $height;
     margin: 0;
   }
 }

@@ -6,8 +6,12 @@
 // Wrapper
 .bar__wrapper {
   background-color: $bar-bg;
-  min-height: $bar-h;
   padding: $bar-p;
+  transition: background .2s ease-out;
+
+  &.bar__wrapper--empty {
+    background-color: transparent;
+  }
 }
 
 // Sections
@@ -29,7 +33,7 @@
 
 .bar__ws__icon {
   color: $bar-ws-icon-bg;
-  margin: 0 $bar-ws-icon-space;
+  margin: $bar-ws-icon-space;
 
   &--selected {
     color: $bar-ws-icon-bg-selected;
@@ -72,7 +76,10 @@
   min-width: 36px;
 }
 
-
+// Separator
+.bar__separator {
+  background: $bar-separator-bg;
+}
 
 // label {
 //   font-weight: bold;
