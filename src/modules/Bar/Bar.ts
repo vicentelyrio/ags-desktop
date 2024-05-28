@@ -11,30 +11,26 @@ import { Divider } from './components/Divider'
 
 const hyprland = await Service.import('hyprland')
 
-// const mpris = await Service.import('mpris')
-// const battery = await Service.import('battery')
+const mpris = await Service.import('mpris')
 
-// we don't need dunst or any other notification daemon
-// because the Notifications module is a notification daemon itself
+function Media() {
+  const label = Utils.watch('', mpris, 'player-changed', () => {
+    if (mpris.players[0]) {
+      const { track_artists, track_title } = mpris.players[0]
+      return `${track_artists.join(', ')} - ${track_title}`
+    } else {
+      return 'Nothing is playing'
+    }
+  })
 
-// function Media() {
-//   const label = Utils.watch('', mpris, 'player-changed', () => {
-//     if (mpris.players[0]) {
-//       const { track_artists, track_title } = mpris.players[0]
-//       return `${track_artists.join(', ')} - ${track_title}`
-//     } else {
-//       return 'Nothing is playing'
-//     }
-//   })
-//
-//   return Widget.Button({
-//     class_name: 'media',
-//     on_primary_click: () => mpris.getPlayer('')?.playPause(),
-//     on_scroll_up: () => mpris.getPlayer('')?.next(),
-//     on_scroll_down: () => mpris.getPlayer('')?.previous(),
-//     child: Widget.Label({ label }),
-//   })
-// }
+  return Widget.Button({
+    class_name: 'media',
+    on_primary_click: () => mpris.getPlayer('')?.playPause(),
+    on_scroll_up: () => mpris.getPlayer('')?.next(),
+    on_scroll_down: () => mpris.getPlayer('')?.previous(),
+    child: Widget.Label({ label }),
+  })
+}
 
 function Left() {
   return Widget.Box({
@@ -53,7 +49,7 @@ function Center() {
     className: 'bar__left',
     spacing: 8,
     children: [
-      // Media(),
+      Media(),
     ],
   })
 }
@@ -87,12 +83,14 @@ export function Bar(monitor = 0) {
     child: Widget.CenterBox({
       setup: (self) => {
         self.hook(hyprland, () => {
+          const active = Number(Utils.exec(`sh -c "hyprctl activewindow | grep workspace | awk -F ' ' '{print $2}'"`))
+
           const currentWS = hyprland.getWorkspace(hyprland.active.workspace.id)
           const currentEmpty = (currentWS?.windows ?? 0) === 0
           const special = hyprland.getWorkspace(-98)
           const specialEmpty = (special?.windows ?? 0) === 0
 
-          const hideBg = special ? (specialEmpty && currentEmpty) : currentEmpty
+          const hideBg = active < 0 ? (specialEmpty && currentEmpty) : currentEmpty
 
           self.class_name = hideBg ? 'bar__wrapper bar__wrapper--empty' : 'bar__wrapper'
         })
