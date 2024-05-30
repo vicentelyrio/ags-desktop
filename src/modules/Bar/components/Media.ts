@@ -2,7 +2,7 @@ import { MprisPlayer } from 'types/service/mpris'
 
 const mpris = await Service.import('mpris')
 
-const lastPlayed = Variable('')
+const lastPlayed = Variable<MprisPlayer | null>(null)
 
 // const FALLBACK_ICON = 'audio-x-generic-symbolic'
 const PLAY_ICON = 'media-playback-start-symbolic'
@@ -14,30 +14,26 @@ function className(cl: string, status: boolean) {
   return status ? cl : `${cl} ${cl}--disabled`
 }
 
-function Player(player: MprisPlayer) {
-  // const img = Widget.Box({
-  //   class_name: 'bar__player__cover',
-  //   vpack: 'start',
-  //   css: player.bind('cover_path').transform(p => ` background-image: url('${p}'); `),
-  // })
+function DefaultButtons() {
+  const playPause = Widget.Button({
+    className: className('bar__player__play', false),
+    child: Widget.Icon(PLAY_ICON),
+  })
 
-  // const title = Widget.Label({
-  //   class_name: 'bar__player__title',
-  //   label: player.bind('track_title'),
-  // })
+  const previous = Widget.Button({
+    className: className('bar__player__previous', false),
+    child: Widget.Icon(PREV_ICON),
+  })
 
-  // const icon = Widget.Icon({
-  //   className: 'bar__player__icon',
-  //   hexpand: true,
-  //   hpack: 'center',
-  //   vpack: 'center',
-  //   size: 20,
-  //   tooltip_text: player.identity || '',
-  //   icon: Utils.merge([player.bind('name'), player.bind('entry')], (name, entry) => (
-  //     findIconByName(entry || name) ?? FALLBACK_ICON
-  //   )),
-  // })
+  const next = Widget.Button({
+    className: className('bar__player__next', false),
+    child: Widget.Icon(NEXT_ICON),
+  })
 
+  return [previous, playPause, next]
+}
+
+function Buttons(player: MprisPlayer) {
   const playPause = Widget.Button({
     onClicked: () => player.playPause(),
     className: player.bind('can_play').as(s => className('bar__player__play', s)),
@@ -64,28 +60,38 @@ function Player(player: MprisPlayer) {
     child: Widget.Icon(NEXT_ICON),
   })
 
+
+  return [previous, playPause, next]
+}
+
+function Player(player?: MprisPlayer) {
+  const buttons = player ? Buttons(player) : DefaultButtons()
+
   return Widget.Box({
     className: 'bar__player',
     spacing: 4,
-    visible: lastPlayed.bind().as((s) => s === player.name),
-    children: [
-      previous,
-      playPause,
-      next,
-    ]
+    children: buttons
   })
 }
 
 export function Media() {
-  const players = mpris.bind('players')
-
   mpris.connect('changed', (service) => {
     const player = service.players.find((p) => p.play_back_status === 'Playing')
 
-    if (player) lastPlayed.value = player.name
+    if (player) lastPlayed.value = player
+  })
+
+  mpris.connect('player-closed', (service) => {
+    const player = service.players.find((p) => lastPlayed?.value?.name === p.name)
+
+    if (!player) lastPlayed.value = null
   })
 
   return Widget.Box({
-    children: players.as(p => p.map(Player)),
+    child: Utils.merge([mpris.bind('players'), lastPlayed.bind()], (players, last) => {
+      if (players.length === 0) return Player()
+
+      return Player(last ? last : players[0])
+    })
   })
 }
