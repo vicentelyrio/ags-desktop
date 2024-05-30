@@ -11,6 +11,7 @@ import { Divider } from './components/Divider'
 import { Media } from './components/Media'
 import { Network } from './components/Network'
 import { BarBg } from './components/BarBg'
+import { System } from './components/System'
 
 function Left() {
   return Widget.Box({
@@ -42,6 +43,8 @@ function Right() {
     children: [
       Notification(),
       Systray(),
+      Divider(),
+      System(),
       Divider(),
       Network(),
       Bluetooth(),

@@ -1,5 +1,6 @@
 import { Bar } from 'src/modules/Bar/Bar'
 import { Launcher } from 'src/modules/Launcher/Launcher'
+import { NotificationPopups } from './modules/Notification/Notification'
 // import { IconBrowser } from './modules/IconBrowser/IconBrowser'
 
 App.config({
@@ -8,7 +9,7 @@ App.config({
   windows: [
     Bar(0),
     Launcher,
+    NotificationPopups(0),
     // IconBrowser
   ]
 })
-

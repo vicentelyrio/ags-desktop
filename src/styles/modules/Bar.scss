@@ -1,4 +1,4 @@
-@import '../../mixins.scss';
+@import '../mixins.scss';
 
 // Window
 .bar {}
@@ -84,20 +84,7 @@
 .bar__systray__item {}
 
 // Media
-.bar__player {
-  border-right: 1px solid rgba(255, 255, 255, .1);
-  padding-right: 8px;
-  margin-left: 8px;
-
-  &:last-child { border: none; }
-}
-
-.bar__player__cover {
-  min-width: 30px;
-  min-height: 30px;
-  background-size: cover;
-  background-position: center;
-}
+.bar__player {}
 
 .bar__player__play,
 .bar__player__previous,
@@ -111,4 +98,11 @@
   opacity: 0.2;
 }
 
-.bar__player__icon {}
+// System
+.bar__progress {
+  background-color: $surface0;
+  color: $mauve;
+  min-width: 28px;
+  min-height: 28px;
+  font-size: 5px;
+}
