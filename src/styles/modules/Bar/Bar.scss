@@ -16,9 +16,8 @@
 
 // Sections
 .bar__left {}
-
+.bar__center {}
 .bar__right {}
-
 
 // Logo
 .bar__logo {
@@ -28,7 +27,6 @@
 
 // workspace
 .bar__ws {}
-
 .bar__ws__btn {}
 
 .bar__ws__icon {
@@ -81,18 +79,36 @@
   background: $bar-separator-bg;
 }
 
-// label {
-//   font-weight: bold;
-// }
-// .client-title {
-//   color: @theme_selected_bg_color;
-// }
-//
-// .notification {
-//   color: yellow;
-// }
-//
-// levelbar block,
-// highlight {
-//   min-height: 10px;
-// }
+// Systray
+.bar__systray {}
+.bar__systray__item {}
+
+// Media
+.bar__player {
+  border-right: 1px solid rgba(255, 255, 255, .1);
+  padding-right: 8px;
+  margin-left: 8px;
+
+  &:last-child { border: none; }
+}
+
+.bar__player__cover {
+  min-width: 30px;
+  min-height: 30px;
+  background-size: cover;
+  background-position: center;
+}
+
+.bar__player__play,
+.bar__player__previous,
+.bar__player__next {
+  border-radius: 50%;
+}
+
+.bar__player__play--disabled,
+.bar__player__previous--disabled,
+.bar__player__next--disabled {
+  opacity: 0.2;
+}
+
+.bar__player__icon {}

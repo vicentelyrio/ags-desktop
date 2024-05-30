@@ -1,30 +1,34 @@
+import { Application } from 'types/service/applications'
+
 const { query } = await Service.import('applications')
 
 const WINDOW_NAME = 'applauncher'
 
-const AppItem = (app: any) => Widget.Button({
-  on_clicked: () => {
-    App.closeWindow(WINDOW_NAME)
-    app.launch()
-  },
-  attribute: { app },
-  child: Widget.Box({
-    spacing: 8,
-    children: [
-      Widget.Icon({
-        icon: app.icon_name || '',
-        size: 42,
-      }),
-      Widget.Label({
-        class_name: 'title',
-        label: app.name,
-        xalign: 0,
-        vpack: 'center',
-        truncate: 'end',
-      }),
-    ],
-  }),
-})
+const AppItem = (app: Application) => {
+  return Widget.Button({
+    on_clicked: () => {
+      App.closeWindow(WINDOW_NAME)
+      app.launch()
+    },
+    attribute: { app },
+    child: Widget.Box({
+      spacing: 8,
+      children: [
+        Widget.Icon({
+          icon: app.icon_name || '',
+          size: 42,
+        }),
+        Widget.Label({
+          class_name: 'title',
+          label: app.name,
+          xalign: 0,
+          vpack: 'center',
+          truncate: 'end',
+        }),
+      ],
+    }),
+  })
+}
 
 const Applauncher = ({ width = 500, height = 500, spacing = 12 }) => {
   // list of application buttons
