@@ -11,80 +11,82 @@ function NotificationIcon({ app_entry, app_icon, image }) {
   }
 
   let icon = 'dialog-information-symbolic'
-  if (Utils.lookUpIcon(app_icon))
-  icon = app_icon
 
-  if (app_entry && Utils.lookUpIcon(app_entry))
-  icon = app_entry
+  if (Utils.lookUpIcon(app_icon)) icon = app_icon
 
-  return Widget.Box({
-    child: Widget.Icon(icon),
-  })
+  if (app_entry && Utils.lookUpIcon(app_entry)) icon = app_entry
+
+  return Widget.Box({ child: Widget.Icon(icon) })
 }
 
 function Notification(n: any) {
   const icon = Widget.Box({
     vpack: 'start',
-    class_name: 'icon',
+    className: 'notification__icon',
     child: NotificationIcon(n),
   })
 
   const title = Widget.Label({
-    class_name: 'title',
+    className: 'notification__title',
     xalign: 0,
     justification: 'left',
     hexpand: true,
-    max_width_chars: 24,
+    maxWidthChars: 24,
     truncate: 'end',
     wrap: true,
     label: n.summary,
-    use_markup: true,
+    useMarkup: true,
   })
 
   const body = Widget.Label({
-    class_name: 'body',
+    className: 'notification__body',
     hexpand: true,
-    use_markup: true,
     xalign: 0,
+    useMarkup: true,
+    // maxWidthChars: 36,
+    // truncate: 'end',
     justification: 'left',
     label: n.body,
     wrap: true,
   })
 
   const actions = Widget.Box({
-    class_name: 'actions',
+    className: 'notification__actions',
     children: n.actions.map(({ id, label }) => Widget.Button({
-      class_name: 'action-button',
-      on_clicked: () => {
+      className: 'notification__actions__button',
+      onClicked: () => {
         n.invoke(id)
         n.dismiss()
       },
-      hexpand: true,
       child: Widget.Label(label),
     })),
   })
 
-  return Widget.EventBox(
-    {
-      attribute: { id: n.id },
-      on_primary_click: n.dismiss,
-    },
-    Widget.Box(
-      {
-        class_name: `notification ${n.urgency}`,
-        vertical: true,
-      },
-      Widget.Box([
-        icon,
-        Widget.Box(
-          { vertical: true },
-          title,
-          body,
-        ),
-      ]),
+  const info = Widget.Box({
+    className: 'notification__info',
+    vertical: true,
+    children: [
+      title,
+      body,
       actions,
-    ),
-  )
+    ]
+  })
+
+  return Widget.EventBox({
+    attribute: { id: n.id },
+    onPrimaryClick: n.dismiss,
+    child: Widget.Box({
+      className: `notification notification--${n.urgency}`,
+      vertical: true,
+      child: Widget.Box({
+        className: 'notification__container',
+        children: [
+          icon,
+          info,
+        ]
+      })
+    })
+  })
 }
 
 export function NotificationPopups(monitor = 0) {
@@ -107,20 +109,14 @@ export function NotificationPopups(monitor = 0) {
 
   return Widget.Window({
     monitor,
-    name: `notifications${monitor}`,
-    className: 'notification-popups',
+    name: `notifications-${monitor}`,
+    className: 'notifications',
+    layer: 'overlay',
     anchor: ['top', 'right'],
     child: Widget.Box({
       className: 'notifications',
       vertical: true,
       child: list,
-
-      /** this is a simple one liner that could be used instead of
-                hooking into the 'notified' and 'dismissed' signals.
-                but its not very optimized becuase it will recreate
-                the whole list everytime a notification is added or dismissed */
-      // children: notifications.bind('popups')
-      //     .as(popups => popups.map(Notification))
     }),
   })
 }

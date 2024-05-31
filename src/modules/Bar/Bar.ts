@@ -4,7 +4,6 @@ import { Clock } from './components/Clock'
 import { Bluetooth } from './components/Bluetooth'
 import { Systray } from './components/Systray'
 import { Volume } from './components/Volume'
-import { Notification } from './components/Notification'
 import { Brightness } from './components/Brightness'
 import { Client } from './components/Client'
 import { Divider } from './components/Divider'
@@ -41,7 +40,6 @@ function Right() {
     hpack: 'end',
     spacing: 16,
     children: [
-      Notification(),
       Systray(),
       Divider(),
       System(),
@@ -66,6 +64,7 @@ export function Bar(monitor = 0) {
     exclusivity: 'exclusive',
     child: Widget.CenterBox({
       setup: BarBg,
+      vexpand: false,
       start_widget: Left(),
       center_widget: Center(),
       end_widget: Right(),

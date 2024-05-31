@@ -25,7 +25,7 @@ inotifywait -m $WORK_DIR -e create,modify,delete -r |
     case "$file" in
       (*.svg)
         copyAssets
-        loadCode
+        loadCode &
       ;;
     esac
     case "$file" in
