@@ -16,11 +16,19 @@ const ram = Variable(0, {
 const cpuProgress = Widget.CircularProgress({
   value: cpu.bind(),
   className: 'bar__progress',
+  child: Widget.Label({
+    className: 'bar__progress__label',
+    label: 'C'
+  }),
 })
 
 const ramProgress = Widget.CircularProgress({
   value: ram.bind(),
   className: 'bar__progress',
+  child: Widget.Label({
+    className: 'bar__progress__label',
+    label: 'R'
+  }),
 })
 
 export function System() {

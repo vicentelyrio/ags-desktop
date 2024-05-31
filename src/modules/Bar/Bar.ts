@@ -57,7 +57,7 @@ function Right() {
 
 export function Bar(monitor = 0) {
   return Widget.Window({
-    name: `bar-${monitor}`,
+    name: `ags-bar`,
     className: 'bar',
     monitor,
     anchor: ['top', 'left', 'right'],

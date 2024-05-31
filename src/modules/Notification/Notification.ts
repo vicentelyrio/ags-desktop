@@ -109,7 +109,7 @@ export function NotificationPopups(monitor = 0) {
 
   return Widget.Window({
     monitor,
-    name: `notifications-${monitor}`,
+    name: `ags-notifications`,
     className: 'notifications',
     layer: 'overlay',
     anchor: ['top', 'right'],
