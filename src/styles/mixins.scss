@@ -1,3 +1,8 @@
+$slider-bg: rgba(0, 0, 0, .4);
+$slider-fg: $color-mauve;
+$slider-h: 10px;
+$slider-br: 10px;
+
 @mixin slider($bg: $slider-bg, $fg: $slider-fg, $height: $slider-h, $radius: $slider-br) {
   trough {
     border-radius: $radius;

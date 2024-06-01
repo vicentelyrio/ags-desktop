@@ -1,12 +1,34 @@
 @import '../mixins.scss';
 
+$bar-bg: $color-crust;
+$bar-pad: $space-sm $space-lg;
+$bar-logo-bg: $color-mauve;
+
+$bar-ws-icon-bg: rgba(255, 255, 255, .06);
+$bar-ws-icon-bg-existent: rgba(255, 255, 255, .2);
+$bar-ws-icon-bg-selected: $color-mauve;
+$bar-ws-icon-space: 0 $space-xs;
+
+$bar-separator-bg: rgba(255, 255, 255, .1);
+
+$bar-slider-size: 100px;
+
+$bar-clock-time-width: 36px;
+$bar-clock-date-width: 86px;
+
+$bar-progress-bg: $color-surface0;
+$bar-progress-color: $color-mauve;
+$bar-progress-font: $font-xs;
+$bar-progress-size: 28px;
+$bar-progress-stroke: 4px;
+
 // Window
 .bar {}
 
 // Wrapper
 .bar__wrapper {
   background-color: $bar-bg;
-  padding: $bar-p;
+  padding: $bar-pad;
   transition: background .2s ease-out;
 
   &.bar__wrapper--empty {
@@ -22,7 +44,6 @@
 // Logo
 .bar__logo {
   color: $bar-logo-bg;
-  padding: $bar-logo-p;
 }
 
 // workspace
@@ -44,7 +65,7 @@
 
 // Volume
 .bar__volume {
-  min-width: 100px;
+  min-width: $bar-slider-size;
 }
 
 .bar__volume__slider {
@@ -53,7 +74,7 @@
 
 // Brightness
 .bar__brightness {
-  min-width: 100px;
+  min-width: $bar-slider-size;
 }
 
 .bar__brightness__slider {
@@ -63,15 +84,14 @@
 // Clock
 .bar__clock {
   font-weight: bold;
-  padding: $bar-clock-p;
 }
 
 .bar__clock__date {
-  min-width: 86px;
+  min-width: $bar-clock-date-width;
 }
 
 .bar__clock__time {
-  min-width: 36px;
+  min-width: $bar-clock-time-width;
 }
 
 // Separator
@@ -100,14 +120,14 @@
 
 // System
 .bar__progress {
-  background-color: $surface0;
-  color: $mauve;
-  min-width: 28px;
-  min-height: 28px;
-  font-size: 5px;
+  background-color: $bar-progress-bg;
+  color: $bar-progress-color;
+  min-width: $bar-progress-size;
+  min-height: $bar-progress-size;
+  font-size: $bar-progress-stroke;
 }
 
 .bar__progress__label {
-  font-size: 10px;
+  font-size: $bar-progress-font;
   font-weight: bold;
 }

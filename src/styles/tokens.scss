@@ -1,19 +1,48 @@
-$bar-bg: $crust;
-$bar-p: 6px 24px;
+// COLORS (Catppuccin Macchiato)
+$color-rosewater: #f4dbd6;
+$color-flamingo: #f0c6c6;
+$color-pink: #f5bde6;
+$color-mauve: #c6a0f6;
+$color-red: #ed8796;
+$color-maroon: #ee99a0;
+$color-peach: #f5a97f;
+$color-yellow: #eed49f;
+$color-green: #a6da95;
+$color-teal: #8bd5ca;
+$color-sky: #91d7e3;
+$color-sapphire: #7dc4e4;
+$color-blue: #8aadf4;
+$color-lavender: #b7bdf8;
+$color-text: #cad3f5;
+$color-subtext1: #b8c0e0;
+$color-subtext0: #a5adcb;
+$color-overlay2: #939ab7;
+$color-overlay1: #8087a2;
+$color-overlay0: #6e738d;
+$color-surface2: #5b6078;
+$color-surface1: #494d64;
+$color-surface0: #363a4f;
+$color-base: #24273a;
+$color-mantle: #1e2030;
+$color-crust: #181926;
 
-$bar-logo-bg: $mauve;
-$bar-logo-p: 0;
+// SPACES
+$space-xs: 2px;
+$space-sm: 6px;
+$space-md: 12px;
+$space-lg: 24px;
+$space-xl: 36px;
 
-$bar-ws-icon-bg: rgba(255, 255, 255, .06);
-$bar-ws-icon-bg-existent: rgba(255, 255, 255, .2);
-$bar-ws-icon-bg-selected: $mauve;
-$bar-ws-icon-space: 0 2px;
+// FONT
+$font-xs: 10px;
+$font-sm: 14px;
+$font-md: 18px;
+$font-lg: 24px;
+$font-xl: 36px;
 
-$bar-clock-p: 0;
-
-$bar-separator-bg: rgba(255, 255, 255, .1);
-
-$slider-bg: rgba(0, 0, 0, .4);
-$slider-fg: $mauve;
-$slider-h: 10px;
-$slider-br: 10px;
+// RADIUS
+$radius-xs: 2px;
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 20px;

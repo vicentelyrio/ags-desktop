@@ -1,0 +1,57 @@
+$launcher-bg: $color-mantle;
+$launcher-radius: $radius-lg;
+$launcher-width: 600px;
+$launcher-height: 500px;
+$launcher-pad: $space-lg;
+
+$launcher-search-bg: $color-crust;
+$launcher-search-font: $font-lg;
+$launcher-search-pad: $space-md $space-lg;
+$launcher-search-margin: 0 0 $space-lg;
+$launcher-search-color: $color-surface2;
+
+$launcher-scroll-size: 430px;
+
+$launcher-item-padding: $space-sm;
+$launcher-item-icon-margin: 0 $space-md 0 0;
+$launcher-item-font: $font-md;
+
+.launcher {
+  background: transparent;
+}
+
+.launcher__box {
+  background: $launcher-bg;
+  border-radius: $launcher-radius;
+  min-width: $launcher-width;
+  min-height: $launcher-height;
+  padding: $launcher-pad;
+}
+
+.launcher__search {
+  background: $launcher-search-bg;
+  box-shadow: none;
+  font-size: $launcher-search-font;
+  font-weight: bold;
+  color: $launcher-search-color;
+  padding: $launcher-search-pad;
+  margin: $launcher-search-margin;
+}
+
+.launcher__scroll {
+  min-height: $launcher-scroll-size;
+}
+
+.launcher__item {}
+
+.launcher__item__container {
+  padding: $launcher-item-padding;
+}
+
+.launcher__item__icon {
+  margin: $launcher-item-icon-margin;
+}
+
+.launcher__item__label {
+  font-size: $launcher-item-font;
+}

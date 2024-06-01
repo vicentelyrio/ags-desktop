@@ -1,48 +1,65 @@
+$notifications-padding: $space-xs $space-xs $space-lg;
+$notification-bg: $color-crust;
+$notification-radius: $radius-lg;
+$notification-width: 350px;
+$notification-padding: $space-lg;
+$notification-border: $color-red;
+$notification-margin: $space-xs;
+$notification-icon-size: 68px;
+$notification-icon-image-size: 58px;
+$notification-icon-margin: 0 $space-lg 0 0;
+$notification-icon-radius: $radius-sm;
+$notification-title: $font-md;
+$notification-title-margin: 0 0 $space-sm;
+$notification-message: $font-sm;
+$notification-actions-button-margin: $space-md $space-sm;
+
 .notifications {
-  padding: 2px 2px 20px;
+  padding: $notifications-padding;
 }
 
 .notification {
-  background: $crust;
-  border-radius: 12px;
-  min-width: 350px;
-  padding: 20px;
-  margin: 2px;
+  background: $notification-bg;
+  border-radius: $notification-radius;
+  min-width: $notification-width;
+  padding: $notification-padding;
+  margin: $notification-margin;
 
   &--critical {
-    border: 1px solid lightcoral;
+    border: 1px solid $notification-border;
   }
 }
 
 .notification__icon {
-  min-width: 68px;
-  min-height: 68px;
-  margin-right: 10px;
-  border-radius: 4px;
+  border-radius: $notification-icon-radius;
+  min-width: $notification-icon-size;
+  min-height: $notification-icon-size;
+  margin: $notification-icon-margin;
 
   image {
-    font-size: 58px;
+    font-size: $notification-icon-image-size;
   }
 
   box {
-    min-width: 68px;
-    min-height: 68px;
+    border-radius: $notification-icon-radius;
+    min-width: $notification-icon-size;
+    min-height: $notification-icon-size;
   }
 }
 
 .notification__info {}
 
 .notification__title {
-  font-size: 1.4em;
+  font-size: $notification-title;
+  margin: $notification-title-margin;
 }
 
 .notification__body {
-  font-size: 1.1em;
+  font-size: $notification-message;
 }
 
 .notification__actions__button {
-  margin: 0 .4em;
-  margin-top: .8em;
+  margin: $notification-actions-button-margin;
 
   &:first-child { margin-left: 0; }
   &:last-child { margin-right: 0; }
