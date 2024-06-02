@@ -1,20 +1,21 @@
 $launcher-bg: $color-mantle;
 $launcher-radius: $radius-lg;
 $launcher-width: 600px;
-$launcher-height: 500px;
 $launcher-pad: $space-lg;
 
 $launcher-search-bg: $color-crust;
 $launcher-search-font: $font-lg;
 $launcher-search-pad: $space-md $space-lg;
-$launcher-search-margin: 0 0 $space-lg;
 $launcher-search-color: $color-surface2;
 
-$launcher-scroll-size: 430px;
+$launcher-scroll-margin: $space-lg 0 0;
 
 $launcher-item-padding: $space-sm;
 $launcher-item-icon-margin: 0 $space-md 0 0;
 $launcher-item-font: $font-md;
+
+$launcher-item-bg: $color-mantle;
+$launcher-item-bg-focus: rgba(0, 0, 0, .15);
 
 .launcher {
   background: transparent;
@@ -24,7 +25,6 @@ $launcher-item-font: $font-md;
   background: $launcher-bg;
   border-radius: $launcher-radius;
   min-width: $launcher-width;
-  min-height: $launcher-height;
   padding: $launcher-pad;
 }
 
@@ -35,14 +35,20 @@ $launcher-item-font: $font-md;
   font-weight: bold;
   color: $launcher-search-color;
   padding: $launcher-search-pad;
-  margin: $launcher-search-margin;
 }
 
 .launcher__scroll {
-  min-height: $launcher-scroll-size;
+  margin: $launcher-scroll-margin;
 }
 
-.launcher__item {}
+.launcher__item {
+  background: $launcher-item-bg;
+
+  &:focus {
+    box-shadow: none;
+    background: $launcher-item-bg-focus;
+  }
+}
 
 .launcher__item__container {
   padding: $launcher-item-padding;

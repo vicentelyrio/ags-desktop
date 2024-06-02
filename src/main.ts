@@ -8,7 +8,7 @@ App.config({
   icons: `${App.configDir}/assets`,
   windows: [
     Bar(0),
-    Launcher,
+    Launcher(0),
     NotificationPopups(0),
     // IconBrowser
   ]

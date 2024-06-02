@@ -1,17 +1,18 @@
 import { Application } from 'types/service/applications'
 
-const { query } = await Service.import('applications')
+const { query, list, reload } = await Service.import('applications')
 
-const WINDOW_NAME = 'applauncher'
+const WINDOW_NAME = 'ags-launcher'
 
-const AppItem = (app: Application) => {
+const searchInput = Variable('')
+
+function AppItem(app: Application) {
   return Widget.Button({
     className: 'launcher__item',
-    on_clicked: () => {
+    onClicked: () => {
       App.closeWindow(WINDOW_NAME)
       app.launch()
     },
-    attribute: { app },
     child: Widget.Box({
       className: 'launcher__item__container',
       children: [
@@ -26,72 +27,65 @@ const AppItem = (app: Application) => {
           xalign: 0,
           vpack: 'center',
           truncate: 'end',
-        }),
-      ],
-    }),
+        })
+      ]
+    })
   })
 }
 
-const Applauncher = () => {
-  // list of application buttons
-  let applications = query('').map(AppItem)
+function AppList() {
+  return Widget.Scrollable({
+    className: 'launcher__scroll',
+    hscroll: 'never',
+    setup: self => self.hook(searchInput, () => {
+      const total = query(searchInput.value).length
+      const height = Math.min(total * 74, 500)
 
-  // container holding the buttons
-  const list = Widget.Box({
-    className: 'launcher__list',
-    vertical: true,
-    children: applications,
-    spacing: 12,
+      self.visible = !!searchInput.value
+      self.css = `min-height: ${height}px;`
+    }),
+    child: Widget.Box({
+      className: 'launcher__list',
+      vertical: true,
+      spacing: 12,
+      children: list.map(AppItem),
+      setup: self => self.hook(searchInput, () => {
+        self.children = query(searchInput.value).map(AppItem)
+      }),
+    })
   })
+}
 
-  // repopulate the box, so the most frequent apps are on top of the list
-  function repopulate() {
-    applications = query('').map(AppItem)
-    list.children = applications
-  }
-
-  // search entry
-  const search = Widget.Entry({
+function SearchBox() {
+  return Widget.Entry({
     className: 'launcher__search',
     hexpand: true,
-
-    // to launch the first item on Enter
-    on_accept: () => {
-      // make sure we only consider visible (searched for) applications
-      const results = applications.filter((item) => item.visible)
-
-      if (results[0]) {
-        App.toggleWindow(WINDOW_NAME)
-        results[0].attribute.app.launch()
-      }
+    onAccept: () => {
+      query(searchInput.value)[0].launch()
+      App.closeWindow(WINDOW_NAME)
     },
-
-    // filter out the list
-    on_change: ({ text }) => applications.forEach(item => {
-      item.visible = item.attribute.app.match(text ?? '')
-    }),
+    onChange: ({ text }) => {
+      searchInput.setValue(String(text))
+    }
   })
+}
+
+function Applauncher() {
+  const appList = AppList()
+  const search = SearchBox()
 
   return Widget.Box({
     className: 'launcher__box',
     vertical: true,
     children: [
       search,
-
-      // wrap the list in a scrollable
-      Widget.Scrollable({
-        className: 'launcher__scroll',
-        hscroll: 'never',
-        child: list,
-      }),
+      appList,
     ],
     setup: self => self.hook(App, (_, windowName, visible) => {
-      if (windowName !== WINDOW_NAME)
-      return
+      if (windowName !== WINDOW_NAME) return
 
-      // when the applauncher shows up
       if (visible) {
-        repopulate()
+        reload()
         search.text = ''
         search.grab_focus()
       }
@@ -99,13 +93,16 @@ const Applauncher = () => {
   })
 }
 
-export const Launcher = Widget.Window({
-  className: 'launcher',
-  name: WINDOW_NAME,
-  setup: self => self.keybind('Escape', () => {
-    App.closeWindow(WINDOW_NAME)
-  }),
-  visible: false,
-  keymode: 'exclusive',
-  child: Applauncher(),
-})
+export function Launcher(monitor = 0) {
+  return Widget.Window({
+    className: 'launcher',
+    monitor,
+    name: WINDOW_NAME,
+    setup: (self) => (
+      self.keybind('Escape', () => App.closeWindow(WINDOW_NAME))
+    ),
+    visible: false,
+    keymode: 'exclusive',
+    child: Applauncher(),
+  })
+}

@@ -155,6 +155,11 @@
     "@girs/gjs" "^3.3.0"
     "@girs/glib-2.0" "^2.78.0-3.3.0"
 
+"@leeoniya/ufuzzy@^1.0.14":
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/@leeoniya/ufuzzy/-/ufuzzy-1.0.14.tgz#01572c0de9cfa1420cf6ecac76dd59db5ebd1337"
+  integrity sha512-/xF4baYuCQMo+L/fMSUrZnibcu0BquEGnbxfVPiZhs/NbJeKj4c/UmFpQzW9Us0w45ui/yYW3vyaqawhNYsTzA==
+
 anymatch@~3.1.2:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/anymatch/-/anymatch-3.1.3.tgz#790c58b19ba1720a84205b57c618d5ad8524973e"
