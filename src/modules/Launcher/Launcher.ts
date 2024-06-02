@@ -6,7 +6,7 @@ const { query, list, reload } = await Service.import('applications')
 const WINDOW_NAME = 'ags-launcher'
 
 // const CALCULATION_REGEX = /^[0-9+\-*/().=\s]+$/
-const CALCULATION_REGEX = /^(([0-9]*\.?[0-9]+(\s*[a-zA-Z]+)?\s*(to\s*[a-zA-Z]+)?)|([0-9+\-*/^().,=\s]+|([a-zA-Z_][a-zA-Z0-9_]*\s*(\([^)]*\))?)|([a-zA-Z]+)))+$/
+const CALCULATION_REGEX = /^((\d+(\.\d+)?\s*[a-zA-Z]+\s+to\s+[a-zA-Z]+)|([0-9+\-*/^().,=\s]+)|([a-zA-Z_][a-zA-Z0-9_]*\s*\([^)]*\)))+$/
 
 enum SearchType {
   APP = 'app',
