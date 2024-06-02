@@ -1,10 +1,35 @@
 import { Application } from 'types/service/applications'
+import { evaluate } from 'mathjs'
 
 const { query, list, reload } = await Service.import('applications')
 
 const WINDOW_NAME = 'ags-launcher'
 
-const searchInput = Variable('')
+// const CALCULATION_REGEX = /^[0-9+\-*/().=\s]+$/
+const CALCULATION_REGEX = /^(([0-9]*\.?[0-9]+(\s*[a-zA-Z]+)?\s*(to\s*[a-zA-Z]+)?)|([0-9+\-*/^().,=\s]+|([a-zA-Z_][a-zA-Z0-9_]*\s*(\([^)]*\))?)|([a-zA-Z]+)))+$/
+
+enum SearchType {
+  APP = 'app',
+  CALC = 'calc',
+}
+
+type SearchInputType = {
+  text: string
+  type: SearchType
+}
+
+const searchInput = Variable<SearchInputType>({
+  text: '',
+  type: SearchType.APP,
+})
+
+function setVar(text: string, type: SearchType) {
+  searchInput.setValue({ text, type })
+}
+
+function resetVar() {
+  setVar('', SearchType.APP)
+}
 
 function AppItem(app: Application) {
   return Widget.Button({
@@ -38,10 +63,11 @@ function AppList() {
     className: 'launcher__scroll',
     hscroll: 'never',
     setup: self => self.hook(searchInput, () => {
-      const total = query(searchInput.value).length
+      const { text, type } = searchInput.value
+      const total = query(text).length
       const height = Math.min(total * 74, 500)
 
-      self.visible = !!searchInput.value
+      self.visible = !!text && type === SearchType.APP
       self.css = `min-height: ${height}px;`
     }),
     child: Widget.Box({
@@ -50,9 +76,28 @@ function AppList() {
       spacing: 12,
       children: list.map(AppItem),
       setup: self => self.hook(searchInput, () => {
-        self.children = query(searchInput.value).map(AppItem)
+        const { text } = searchInput.value
+        self.children = query(text).map(AppItem)
       }),
     })
+  })
+}
+
+function Calc() {
+  return Widget.Box({
+    className: 'launcher__calc',
+    setup: self => self.hook(searchInput, () => {
+      const { text, type } = searchInput.value
+      self.visible = !!text && type === SearchType.CALC
+    }),
+    children: [
+      Widget.Label({
+        className: 'launcher__calc__label',
+        setup: self => self.hook(searchInput, () => {
+          self.label = String('= ' + evaluate(searchInput.value.text))
+        }),
+      })
+    ]
   })
 }
 
@@ -61,11 +106,21 @@ function SearchBox() {
     className: 'launcher__search',
     hexpand: true,
     onAccept: () => {
-      query(searchInput.value)[0].launch()
+      query(searchInput.value.text)[0].launch()
       App.closeWindow(WINDOW_NAME)
     },
     onChange: ({ text }) => {
-      searchInput.setValue(String(text))
+      if (!text) {
+        return resetVar()
+      }
+
+      let type = SearchType.APP
+
+      if (CALCULATION_REGEX.test(String(text))) {
+        type = SearchType.CALC
+      }
+
+      setVar(String(text), type)
     }
   })
 }
@@ -73,6 +128,7 @@ function SearchBox() {
 function Applauncher() {
   const appList = AppList()
   const search = SearchBox()
+  const calc = Calc()
 
   return Widget.Box({
     className: 'launcher__box',
@@ -80,6 +136,7 @@ function Applauncher() {
     children: [
       search,
       appList,
+      calc,
     ],
     setup: self => self.hook(App, (_, windowName, visible) => {
       if (windowName !== WINDOW_NAME) return
@@ -88,6 +145,7 @@ function Applauncher() {
         reload()
         search.text = ''
         search.grab_focus()
+        resetVar()
       }
     }),
   })

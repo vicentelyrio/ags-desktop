@@ -17,6 +17,11 @@ $launcher-item-font: $font-md;
 $launcher-item-bg: $color-mantle;
 $launcher-item-bg-focus: rgba(0, 0, 0, .15);
 
+$launcher-calc-font: $font-lg;
+$launcher-calc-pad: $space-lg;
+$launcher-calc-margin: $space-md 0 0;
+$launcher-calc-color: $color-surface2;
+
 .launcher {
   background: transparent;
 }
@@ -60,4 +65,15 @@ $launcher-item-bg-focus: rgba(0, 0, 0, .15);
 
 .launcher__item__label {
   font-size: $launcher-item-font;
+}
+
+.launcher__calc {
+  padding: $launcher-calc-pad;
+  margin: $launcher-calc-margin;
+}
+
+.launcher__calc__label {
+  font-size: $launcher-calc-font;
+  color: $launcher-calc-color;
+  font-weight: bold;
 }
