@@ -1,11 +1,10 @@
 import { Application } from 'types/service/applications'
 import { evaluate } from 'mathjs'
 
-const { query, list, reload } = await Service.import('applications')
+const { query, reload } = await Service.import('applications')
 
 const WINDOW_NAME = 'ags-launcher'
 
-// const CALCULATION_REGEX = /^[0-9+\-*/().=\s]+$/
 const CALCULATION_REGEX = /^((\d+(\.\d+)?\s*[a-zA-Z]+\s+to\s+[a-zA-Z]+)|([0-9+\-*/^().,=\s]+)|([a-zA-Z_][a-zA-Z0-9_]*\s*\([^)]*\)))+$/
 
 enum SearchType {
@@ -44,7 +43,7 @@ function AppItem(app: Application) {
         Widget.Icon({
           className: 'launcher__item__icon',
           icon: app.icon_name || '',
-          size: 42,
+          size: 22,
         }),
         Widget.Label({
           className: 'launcher__item__label',
@@ -65,16 +64,15 @@ function AppList() {
     setup: self => self.hook(searchInput, () => {
       const { text, type } = searchInput.value
       const total = query(text).length
-      const height = Math.min(total * 74, 500)
+      const height = Math.min(total * 46, 500)
 
-      self.visible = !!text && type === SearchType.APP
+      self.visible = !!text && type === SearchType.APP && total > 0
       self.css = `min-height: ${height}px;`
     }),
     child: Widget.Box({
       className: 'launcher__list',
       vertical: true,
-      spacing: 12,
-      children: list.map(AppItem),
+      spacing: 2,
       setup: self => self.hook(searchInput, () => {
         const { text } = searchInput.value
         self.children = query(text).map(AppItem)
@@ -164,3 +162,4 @@ export function Launcher(monitor = 0) {
     child: Applauncher(),
   })
 }
+
