@@ -1,7 +1,8 @@
 import { Application } from 'types/service/applications'
 import { evaluate } from 'mathjs'
+import createFuzzySearch from '@nozbe/microfuzz'
 
-const { query, reload } = await Service.import('applications')
+const { query, list, reload } = await Service.import('applications')
 
 const WINDOW_NAME = 'ags-launcher'
 
@@ -16,6 +17,10 @@ type SearchInputType = {
   text: string
   type: SearchType
 }
+
+const apps = createFuzzySearch(list, {
+  getText: (item) => [item.name, item.description],
+})
 
 const searchInput = Variable<SearchInputType>({
   text: '',
@@ -63,7 +68,7 @@ function AppList() {
     hscroll: 'never',
     setup: self => self.hook(searchInput, () => {
       const { text, type } = searchInput.value
-      const total = query(text).length
+      const total = apps(text).length
       const height = Math.min(total * 46, 500)
 
       self.visible = !!text && type === SearchType.APP && total > 0
@@ -75,7 +80,8 @@ function AppList() {
       spacing: 2,
       setup: self => self.hook(searchInput, () => {
         const { text } = searchInput.value
-        self.children = query(text).map(AppItem)
+
+        self.children = apps(text).map(({ item }) => AppItem(item))
       }),
     })
   })
