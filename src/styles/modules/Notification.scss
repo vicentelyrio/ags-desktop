@@ -1,4 +1,5 @@
 $notifications-padding: $space-xs $space-xs $space-lg;
+$notification-height: 2000px;
 $notification-bg: $color-crust;
 $notification-radius: $radius-lg;
 $notification-width: 350px;
@@ -15,6 +16,7 @@ $notification-message: $font-sm;
 $notification-actions-button-margin: $space-md $space-sm;
 
 .notifications {
+  min-height: $notification-height;
   padding: $notifications-padding;
 }
 

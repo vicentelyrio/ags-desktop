@@ -35,14 +35,14 @@ function Notification(n: any) {
     truncate: 'end',
     wrap: true,
     label: n.summary,
-    useMarkup: true,
+    use_markup: true,
   })
 
   const body = Widget.Label({
     className: 'notification__body',
     hexpand: true,
     xalign: 0,
-    useMarkup: true,
+    use_markup: true,
     // maxWidthChars: 36,
     // truncate: 'end',
     justification: 'left',
