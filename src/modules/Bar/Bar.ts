@@ -11,6 +11,7 @@ import { Media } from './components/Media'
 import { Network } from './components/Network'
 import { BarBg } from './components/BarBg'
 import { System } from './components/System'
+import { AGS_BAR } from 'src/constants/windows'
 
 function Left() {
   return Widget.Box({
@@ -57,7 +58,7 @@ function Right() {
 
 export function Bar(monitor = 0) {
   return Widget.Window({
-    name: `ags-bar`,
+    name: AGS_BAR,
     className: 'bar',
     monitor,
     anchor: ['top', 'left', 'right'],

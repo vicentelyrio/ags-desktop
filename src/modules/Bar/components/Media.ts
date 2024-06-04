@@ -1,10 +1,9 @@
 import { MprisPlayer } from 'types/service/mpris'
+import { lastMediaPlayed } from 'src/states/media'
+import { AGS_MEDIA_PREVIEW } from 'src/constants/windows'
 
 const mpris = await Service.import('mpris')
 
-const lastPlayed = Variable<MprisPlayer | null>(null)
-
-// const FALLBACK_ICON = 'audio-x-generic-symbolic'
 const PLAY_ICON = 'media-playback-start-symbolic'
 const PAUSE_ICON = 'media-playback-pause-symbolic'
 const PREV_ICON = 'media-skip-backward-symbolic'
@@ -60,35 +59,26 @@ function Buttons(player: MprisPlayer) {
     child: Widget.Icon(NEXT_ICON),
   })
 
-
   return [previous, playPause, next]
 }
 
 function Player(player?: MprisPlayer) {
   const buttons = player ? Buttons(player) : DefaultButtons()
 
-  return Widget.Box({
-    className: 'bar__player',
-    spacing: 4,
-    children: buttons
+  return Widget.EventBox({
+    onHover: () => App.openWindow(AGS_MEDIA_PREVIEW),
+    onHoverLost: () => App.closeWindow(AGS_MEDIA_PREVIEW),
+    child: Widget.Box({
+      className: 'bar__player',
+      spacing: 4,
+      children: buttons
+    })
   })
 }
 
 export function Media() {
-  mpris.connect('changed', (service) => {
-    const player = service.players.find((p) => p.play_back_status === 'Playing')
-
-    if (player) lastPlayed.value = player
-  })
-
-  mpris.connect('player-closed', (service) => {
-    const player = service.players.find((p) => lastPlayed?.value?.name === p.name)
-
-    if (!player) lastPlayed.value = null
-  })
-
   return Widget.Box({
-    child: Utils.merge([mpris.bind('players'), lastPlayed.bind()], (players, last) => {
+    child: Utils.merge([mpris.bind('players'), lastMediaPlayed.bind()], (players, last) => {
       if (players.length === 0) return Player()
 
       return Player(last ? last : players[0])

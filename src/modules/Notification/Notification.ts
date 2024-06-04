@@ -1,3 +1,5 @@
+import { AGS_NOTIFICATION } from "src/constants/windows"
+
 const notifications = await Service.import('notifications')
 
 function NotificationIcon({ app_entry, app_icon, image }) {
@@ -109,7 +111,7 @@ export function NotificationPopups(monitor = 0) {
 
   return Widget.Window({
     monitor,
-    name: `ags-notifications`,
+    name: AGS_NOTIFICATION,
     className: 'notifications',
     layer: 'overlay',
     anchor: ['top', 'right'],

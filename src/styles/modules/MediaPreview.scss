@@ -1,0 +1,30 @@
+.mediaPreview {
+  background: transparent;
+}
+
+.mediaPreview__container {
+  background: $color-crust;
+  border-radius: $radius-md;
+  padding: $space-md;
+  min-width: 350px;
+  margin-top: $space-sm;
+}
+
+.mediaPreview__cover {
+  background-size: cover;
+  background-position: center;
+  border-radius: $radius-md;
+  min-width: 64px;
+  min-height: 64px;
+  margin-right: $space-md;
+}
+
+.mediaPreview__title {
+  font-size: $font-lg;
+  margin-bottom: $space-xs;
+}
+
+.mediaPreview__artist {
+  font-size: $font-sm;
+}
+

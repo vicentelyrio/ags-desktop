@@ -1,30 +1,15 @@
 import { Application } from 'types/service/applications'
 import { evaluate } from 'mathjs'
 import createFuzzySearch from '@nozbe/microfuzz'
+import { AGS_LAUNCHER } from 'src/constants/windows'
+import { SearchType, searchInput } from 'src/states/launcher'
 
 const { query, list, reload } = await Service.import('applications')
 
-const WINDOW_NAME = 'ags-launcher'
-
 const CALCULATION_REGEX = /^((\d+(\.\d+)?\s*[a-zA-Z]+\s+to\s+[a-zA-Z]+)|([0-9+\-*/^().,=\s]+)|([a-zA-Z_][a-zA-Z0-9_]*\s*\([^)]*\)))+$/
-
-enum SearchType {
-  APP = 'app',
-  CALC = 'calc',
-}
-
-type SearchInputType = {
-  text: string
-  type: SearchType
-}
 
 const apps = createFuzzySearch(list, {
   getText: (item) => [item.name, item.description],
-})
-
-const searchInput = Variable<SearchInputType>({
-  text: '',
-  type: SearchType.APP,
 })
 
 function setVar(text: string, type: SearchType) {
@@ -39,7 +24,7 @@ function AppItem(app: Application) {
   return Widget.Button({
     className: 'launcher__item',
     onClicked: () => {
-      App.closeWindow(WINDOW_NAME)
+      App.closeWindow(AGS_LAUNCHER)
       app.launch()
     },
     child: Widget.Box({
@@ -111,7 +96,7 @@ function SearchBox() {
     hexpand: true,
     onAccept: () => {
       query(searchInput.value.text)[0].launch()
-      App.closeWindow(WINDOW_NAME)
+      App.closeWindow(AGS_LAUNCHER)
     },
     onChange: ({ text }) => {
       if (!text) {
@@ -143,7 +128,7 @@ function Applauncher() {
       calc,
     ],
     setup: self => self.hook(App, (_, windowName, visible) => {
-      if (windowName !== WINDOW_NAME) return
+      if (windowName !== AGS_LAUNCHER) return
 
       if (visible) {
         reload()
@@ -159,9 +144,9 @@ export function Launcher(monitor = 0) {
   return Widget.Window({
     className: 'launcher',
     monitor,
-    name: WINDOW_NAME,
+    name: AGS_LAUNCHER,
     setup: (self) => (
-      self.keybind('Escape', () => App.closeWindow(WINDOW_NAME))
+      self.keybind('Escape', () => App.closeWindow(AGS_LAUNCHER))
     ),
     visible: false,
     keymode: 'exclusive',
