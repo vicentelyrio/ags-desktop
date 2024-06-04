@@ -19,6 +19,8 @@ function Preview() {
     className: 'mediaPreview__title',
     wrap: true,
     hpack: 'start',
+    truncate: 'end',
+    maxWidthChars: 22,
     label: player.bind('track_title'),
   })
 
@@ -26,6 +28,8 @@ function Preview() {
     className: 'mediaPreview__artist',
     wrap: true,
     hpack: 'start',
+    truncate: 'end',
+    maxWidthChars: 30,
     label: player.bind('track_artists').transform(a => a.join(', ')),
   })
 
@@ -45,11 +49,14 @@ function Preview() {
     children: [
       img,
       Widget.Box({
-        vertical: true,
         hexpand: true,
         children: [
-          Widget.Box([ title, icon ]),
-          artist,
+          Widget.Box({
+            vertical: true,
+            vpack: 'center',
+            children: [ title, artist ]
+          }),
+          icon,
         ]
       })
     ]
