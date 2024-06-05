@@ -1,12 +1,13 @@
 import { AGS_MEDIA_PREVIEW } from 'src/constants/windows'
 import { lastMediaPlayed } from 'src/states/media'
 import { findIconByName } from 'src/utils/findIconByName'
+import { MprisPlayer } from 'types/service/mpris'
+
+const mpris = await Service.import('mpris')
 
 const FALLBACK_ICON = 'audio-x-generic-symbolic'
 
-function Preview() {
-  const player = lastMediaPlayed.value
-
+function Preview(player: MprisPlayer) {
   if (!player) return Widget.Box()
 
   const img = Widget.Box({
@@ -73,7 +74,9 @@ export function MediaPreview(monitor = 0) {
       layer: 'overlay',
       anchor: ['top'],
       child: Widget.EventBox({
-        child: Preview(),
+        child: Utils.merge([mpris.bind('players'), lastMediaPlayed.bind()], (players, last) => {
+          return Preview(last ? last : players[0])
+        }),
         onHoverLost: () => App.closeWindow(AGS_MEDIA_PREVIEW),
       })
     })
