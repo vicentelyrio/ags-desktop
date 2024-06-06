@@ -8,7 +8,7 @@ const mpris = await Service.import('mpris')
 const FALLBACK_ICON = 'audio-x-generic-symbolic'
 
 function Preview(player: MprisPlayer) {
-  if (!player) return Widget.Box()
+  if (!player || player?.play_back_status === 'Stopped') return Widget.Box()
 
   const img = Widget.Box({
     className: 'mediaPreview__cover',
