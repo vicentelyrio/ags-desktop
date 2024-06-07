@@ -1,0 +1,21 @@
+$switch-bg: rgba(0, 0, 0, .4);
+$switch-fg: $color-primary;
+
+@mixin switch($bg: $switch-bg, $fg: $switch-fg) {
+  background-color: $bg;
+  transition: background-color ease-in .2s 0s;
+
+  slider {
+    background-color: $fg;
+  }
+
+  &.on,
+  &:checked {
+    background-color: $fg;
+
+    slider {
+      background-color: $color-white;
+    }
+  }
+}
+

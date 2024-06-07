@@ -1,0 +1,66 @@
+.network__container {
+  background: transparent;
+  margin-right: 160px;
+}
+
+.network__container {
+  background: $color-crust;
+  border-radius: $radius-md;
+  min-width: 350px;
+  padding: $space-md;
+  margin-top: $space-sm;
+}
+
+.network__separator {
+  background: $color-base;
+  margin: $space-md 0;
+}
+
+// TOGGLE
+.network__toggle {
+  padding: 0 $space-sm;
+}
+
+.network__toggle__label {
+  font-size: $font-md;
+  font-weight: bold;
+}
+
+.network__toggle__switch {
+  @include switch;
+}
+
+// LIST
+.network__list__scroll {
+  min-height: 500px;
+}
+
+// ITEM
+.network__list__item {
+  background: transparent;
+  border-radius: $radius-md;
+  padding: $space-sm $space-md;
+  margin-bottom: $space-xs;
+
+  &:hover {
+    background: $color-mantle;
+  }
+  &--active {
+    background: $color-base;
+
+    .network__list__item__icon {
+      background-color: $color-primary;
+    }
+  }
+}
+
+.network__list__item__icon {
+  border-radius: 50%;
+  background-color: $color-base;
+  padding: $space-sm;
+  margin-right: $space-md;
+}
+
+.network__list__item__label {
+  font-size: $font-md;
+}

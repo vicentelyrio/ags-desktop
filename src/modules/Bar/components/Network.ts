@@ -1,3 +1,5 @@
+import { AGS_NETWORK } from "src/constants/windows"
+
 const network = await Service.import('network')
 
 const WifiIndicator = () => Widget.Icon({
@@ -11,11 +13,14 @@ const WiredIndicator = () => Widget.Icon({
 })
 
 export function Network() {
-  return Widget.Stack({
-    children: {
-      wifi: WifiIndicator(),
-      wired: WiredIndicator(),
-    },
-    shown: network.bind('primary').as(p => p || 'wifi'),
+  return Widget.EventBox({
+    child: Widget.Stack({
+      children: {
+        wifi: WifiIndicator(),
+        wired: WiredIndicator(),
+      },
+      shown: network.bind('primary').as(p => p || 'wifi'),
+    }),
+    onPrimaryClick: () => App.toggleWindow(AGS_NETWORK),
   })
 }

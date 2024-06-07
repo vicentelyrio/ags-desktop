@@ -1,12 +1,10 @@
-@import '../mixins.scss';
-
 $bar-bg: $color-crust;
 $bar-pad: $space-sm $space-lg;
-$bar-logo-bg: $color-mauve;
+$bar-logo-bg: $color-primary;
 
 $bar-ws-icon-bg: rgba(255, 255, 255, .06);
 $bar-ws-icon-bg-existent: rgba(255, 255, 255, .2);
-$bar-ws-icon-bg-selected: $color-mauve;
+$bar-ws-icon-bg-selected: $color-primary;
 $bar-ws-icon-space: 0 $space-xs;
 
 $bar-separator-bg: rgba(255, 255, 255, .1);
@@ -17,7 +15,7 @@ $bar-clock-time-width: 36px;
 $bar-clock-date-width: 86px;
 
 $bar-progress-bg: $color-surface0;
-$bar-progress-color: $color-mauve;
+$bar-progress-color: $color-primary;
 $bar-progress-font: $font-xs;
 $bar-progress-size: 28px;
 $bar-progress-stroke: 4px;

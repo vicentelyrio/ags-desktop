@@ -13,6 +13,7 @@ $color-sky: #91d7e3;
 $color-sapphire: #7dc4e4;
 $color-blue: #8aadf4;
 $color-lavender: #b7bdf8;
+$color-white: #ffeeff;
 $color-text: #cad3f5;
 $color-subtext1: #b8c0e0;
 $color-subtext0: #a5adcb;
@@ -25,6 +26,9 @@ $color-surface0: #363a4f;
 $color-base: #24273a;
 $color-mantle: #1e2030;
 $color-crust: #181926;
+
+// Namespace colors (TODO: expand)
+$color-primary: $color-mauve;
 
 // SPACES
 $space-xs: 2px;
