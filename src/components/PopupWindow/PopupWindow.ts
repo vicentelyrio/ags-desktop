@@ -5,14 +5,13 @@ export const PopupWindow = (monitor = 0, props: WindowProps) => {
 
   function close() {
     App.closeWindow(props.name as string)
-    App.closeWindow(closerName)
   }
 
   const win = Widget.Window(props)
 
   win.connect('notify::visible', (window) => {
     if (window.name === props.name) {
-      App.openWindow(closerName)
+      App.toggleWindow(closerName)
     }
   })
 
