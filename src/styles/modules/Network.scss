@@ -33,6 +33,11 @@
 // LIST
 .network__list__scroll {}
 
+.network__list__empty {
+  font-size: $font-md;
+  padding: $space-md;
+}
+
 // ITEM
 .network__list__item {
   background: transparent;
@@ -61,4 +66,25 @@
 
 .network__list__item__label {
   font-size: $font-md;
+}
+
+// Dialog
+.network__dialog {
+}
+
+.network__dialog__title {
+  font-size: $font-lg;
+  font-weight: bold;
+  margin-bottom: $space-lg;
+}
+
+.network__dialog__description {
+  font-size: $font-md;
+  margin-bottom: $space-lg;
+}
+
+.network__dialog__input {
+  font-size: $font-md;
+  font-weight: bold;
+  padding: $space-sm $space-md;
 }

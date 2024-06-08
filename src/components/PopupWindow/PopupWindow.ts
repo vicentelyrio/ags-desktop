@@ -1,16 +1,17 @@
 import { WindowProps } from 'types/widgets/window'
 
-export const PopupWindow = (monitor = 0, props: WindowProps) => {
-  const closerName = `${props.name as string}_CLOSER`
+export function PopupWindow(monitor = 0, windowProps: WindowProps) {
+  const name = windowProps.name as string
+  const closerName = `${name}_CLOSER`
 
   function close() {
-    App.closeWindow(props.name as string)
+    App.closeWindow(name)
   }
 
-  const win = Widget.Window(props)
+  const win = Widget.Window(windowProps)
 
   win.connect('notify::visible', (window) => {
-    if (window.name === props.name) {
+    if (window.name === name) {
       App.toggleWindow(closerName)
     }
   })
@@ -18,7 +19,7 @@ export const PopupWindow = (monitor = 0, props: WindowProps) => {
   const closer = Widget.Window({
     css: 'background: transparent;',
     name: closerName,
-    visible: props?.visible,
+    visible: windowProps?.visible,
     layer: 'top',
     monitor,
     anchor: ['top', 'bottom', 'left', 'right'],

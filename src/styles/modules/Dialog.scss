@@ -1,0 +1,37 @@
+.dialog {
+  background: transparent;
+}
+
+.dialog__box {
+  background: $color-crust;
+  border-radius: $radius-md;
+  min-width: 400px;
+  padding: $space-lg;
+}
+
+.dialog__title {
+  font-size: $font-lg;
+  font-weight: bold;
+  margin-bottom: $space-md;
+}
+
+.dialog__description {
+  font-size: $font-md;
+}
+
+.dialog__actions {
+  margin-top: $space-lg;
+}
+
+.dialog__actions__confirm {
+  background: $color-base;
+  font-size: $font-sm;
+  font-weight: bold;
+}
+
+.dialog__actions__cancel {
+  background: $color-mantle;
+  font-size: $font-sm;
+  font-weight: bold;
+}
+

@@ -1,4 +1,4 @@
-$notifications-padding: $space-xs $space-xs $space-lg;
+$notifications-padding: $space-sm $space-sm $space-lg;
 $notification-height: 2000px;
 $notification-bg: $color-crust;
 $notification-radius: $radius-lg;
@@ -7,12 +7,12 @@ $notification-padding: $space-lg;
 $notification-border: $color-red;
 $notification-margin: $space-xs;
 $notification-icon-size: 68px;
-$notification-icon-image-size: 58px;
+$notification-icon-image-size: 48px;
 $notification-icon-margin: 0 $space-lg 0 0;
 $notification-icon-radius: $radius-sm;
-$notification-title: $font-md;
+$notification-title: $font-lg;
 $notification-title-margin: 0 0 $space-sm;
-$notification-message: $font-sm;
+$notification-message: $font-md;
 $notification-actions-button-margin: $space-md $space-sm;
 
 .notifications {

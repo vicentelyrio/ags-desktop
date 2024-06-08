@@ -1,4 +1,5 @@
-import { AGS_NOTIFICATION } from "src/constants/windows"
+import { AGS_NOTIFICATION } from 'src/constants/windows'
+import { splitString } from 'src/utils/splitString'
 
 const notifications = await Service.import('notifications')
 
@@ -45,10 +46,8 @@ function Notification(n: any) {
     hexpand: true,
     xalign: 0,
     use_markup: true,
-    maxWidthChars: 36,
-    truncate: 'end',
     justification: 'left',
-    label: n.body,
+    label: splitString(n.body, 40),
     wrap: true,
   })
 
