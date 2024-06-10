@@ -5,6 +5,7 @@ import { MediaPreview } from './modules/MediaPreview/MediaPreview'
 import { Network } from './modules/Network/Network'
 import { SystemMenu } from './modules/SystemMenu/SystemMenu'
 import { SystemInfo } from './modules/SystemInfo/SystemInfo'
+import { SystemInfoHover } from './modules/SystemInfoHover/SystemInfoHover'
 
 // import { IconBrowser } from './modules/IconBrowser/IconBrowser'
 
@@ -14,11 +15,14 @@ App.config({
   windows: [
     Bar(0),
     MediaPreview(0),
-    ...SystemMenu(0),
-    ...Network(0),
     Launcher(0),
     NotificationPopups(0),
     SystemInfo(0),
+
+    // Menus
+    ...SystemMenu(0),
+    ...Network(0),
+    ...SystemInfoHover(0),
 
     // IconBrowser
   ]

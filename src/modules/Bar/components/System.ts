@@ -1,3 +1,4 @@
+import { AGS_SYSTEM_INFO_HOVER } from 'src/constants/windows'
 import { cpuRaw, ramRaw } from 'src/states/system'
 
 const cpuProgress = Widget.CircularProgress({
@@ -19,11 +20,14 @@ const ramProgress = Widget.CircularProgress({
 })
 
 export function System() {
-  return Widget.Box({
-    spacing: 8,
-    children: [
-      cpuProgress,
-      ramProgress,
-    ]
+  return Widget.EventBox({
+    onPrimaryClick: () => App.toggleWindow(AGS_SYSTEM_INFO_HOVER),
+    child: Widget.Box({
+      spacing: 8,
+      children: [
+        cpuProgress,
+        ramProgress,
+      ]
+    })
   })
 }

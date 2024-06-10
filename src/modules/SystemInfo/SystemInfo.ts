@@ -42,4 +42,3 @@ export function SystemInfo(monitor = 0) {
     })
   )
 }
-
