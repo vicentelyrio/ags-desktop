@@ -1,4 +1,4 @@
-import { AGS_NETWORK } from "src/constants/windows"
+import { AGS_NETWORK } from 'src/constants/windows'
 
 const network = await Service.import('network')
 

@@ -3,6 +3,7 @@ import { Launcher } from 'src/modules/Launcher/Launcher'
 import { NotificationPopups } from './modules/Notification/Notification'
 import { MediaPreview } from './modules/MediaPreview/MediaPreview'
 import { Network } from './modules/Network/Network'
+import { SystemMenu } from './modules/SystemMenu/SystemMenu'
 
 // import { IconBrowser } from './modules/IconBrowser/IconBrowser'
 
@@ -12,6 +13,7 @@ App.config({
   windows: [
     Bar(0),
     MediaPreview(0),
+    ...SystemMenu(0),
     ...Network(0),
     Launcher(0),
     NotificationPopups(0),

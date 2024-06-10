@@ -1,0 +1,24 @@
+.system-menu__container {
+  background: transparent;
+  margin-left: 20px;
+}
+
+.system-menu__container {
+  background: $color-crust;
+  border-radius: $radius-md;
+  min-width: 200px;
+  padding: $space-md;
+  margin-top: $space-sm;
+}
+
+.system-menu__separator {
+  background: $color-base;
+  margin: $space-md 0;
+}
+
+.system-menu__item {
+  background: transparent;
+  font-size: $font-md;
+  margin-bottom: $space-xs;
+}
+

@@ -15,5 +15,5 @@ buildCode
 buildStyle
 
 # start resources
-loadCode &
+loadCode
 loadStyle

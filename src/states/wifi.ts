@@ -1,4 +1,4 @@
-export const KNOWN_NETWORKS = 'data/.known_networks'
+export const KNOWN_NETWORKS = '/home/vicentelyrio/.config/ags/data/.known_networks'
 
 export type AccessPoint = {
   bssid: string | null

@@ -57,7 +57,7 @@ export function SecondaryNetworks(networks: AccessPoint[]) {
       className: 'network__list__scan',
       label: 'Scan networks',
       hpack: 'start',
-      hexpand: true,
+      vexpand: true,
       onClicked: network.wifi.scan
     })
   }
