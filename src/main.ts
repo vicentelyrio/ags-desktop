@@ -4,6 +4,7 @@ import { NotificationPopups } from './modules/Notification/Notification'
 import { MediaPreview } from './modules/MediaPreview/MediaPreview'
 import { Network } from './modules/Network/Network'
 import { SystemMenu } from './modules/SystemMenu/SystemMenu'
+import { SystemInfo } from './modules/SystemInfo/SystemInfo'
 
 // import { IconBrowser } from './modules/IconBrowser/IconBrowser'
 
@@ -17,6 +18,7 @@ App.config({
     ...Network(0),
     Launcher(0),
     NotificationPopups(0),
+    SystemInfo(0),
 
     // IconBrowser
   ]

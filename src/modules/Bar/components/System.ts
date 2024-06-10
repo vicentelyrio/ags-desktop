@@ -1,20 +1,7 @@
-const divide = ([total, free]) => free / total
-
-const cpu = Variable(0, {
-  poll: [2000, 'top -b -n 1', out => divide([
-    100,
-    out?.split('\n')?.find(line => line?.includes('Cpu(s)'))?.split(/\s+/)?.[1]?.replace(',', '.')
-  ])],
-})
-
-const ram = Variable(0, {
-  poll: [2000, 'free', out => divide(
-    out?.split('\n')?.find(line => line?.includes('Mem:'))?.split(/\s+/)?.splice(1, 2)
-  )],
-})
+import { cpuRaw, ramRaw } from 'src/states/system'
 
 const cpuProgress = Widget.CircularProgress({
-  value: cpu.bind(),
+  value: cpuRaw.bind(),
   className: 'bar__progress',
   child: Widget.Label({
     className: 'bar__progress__label',
@@ -23,7 +10,7 @@ const cpuProgress = Widget.CircularProgress({
 })
 
 const ramProgress = Widget.CircularProgress({
-  value: ram.bind(),
+  value: ramRaw.bind(),
   className: 'bar__progress',
   child: Widget.Label({
     className: 'bar__progress__label',
