@@ -1,6 +1,6 @@
 import { MprisPlayer } from 'types/service/mpris'
 import { lastMediaPlayed } from 'src/states/media'
-import { AGS_MEDIA_PREVIEW } from 'src/constants/windows'
+import { AGS_BAR_MEDIA_MENU } from 'src/constants/windows'
 
 const mpris = await Service.import('mpris')
 
@@ -66,8 +66,8 @@ function Player(player?: MprisPlayer) {
   const buttons = player ? Buttons(player) : DefaultButtons()
 
   return Widget.EventBox({
-    onHover: () => App.openWindow(AGS_MEDIA_PREVIEW),
-    onHoverLost: () => App.closeWindow(AGS_MEDIA_PREVIEW),
+    onHover: () => App.openWindow(AGS_BAR_MEDIA_MENU),
+    onHoverLost: () => App.closeWindow(AGS_BAR_MEDIA_MENU),
     child: Widget.Box({
       className: 'bar__player',
       spacing: 4,

@@ -3,12 +3,14 @@
 @import 'mixins/slider.scss';
 @import 'mixins/switch.scss';
 
+// Bar
 @import 'modules/Bar.scss';
+@import 'modules/BarMedia.scss';
+@import 'modules/BarNetwork.scss';
+@import 'modules/BarSystemInfo.scss';
+@import 'modules/BarSystemMenu.scss';
+
 @import 'modules/Launcher.scss';
 @import 'modules/Notification.scss';
-@import 'modules/MediaPreview.scss';
-@import 'modules/SystemMenu.scss';
-@import 'modules/Network.scss';
 @import 'modules/Dialog.scss';
 @import 'modules/SystemInfo.scss';
-@import 'modules/SystemInfoHover.scss';

@@ -1,3 +1,5 @@
+import { AGS_BAR } from 'src/constants/windows'
+
 import { SystemLogo } from './components/SystemLogo'
 import { Workspaces } from './components/Workspaces'
 import { Clock } from './components/Clock'
@@ -11,7 +13,11 @@ import { Media } from './components/Media'
 import { Network } from './components/Network'
 import { BarBg } from './components/BarBg'
 import { System } from './components/System'
-import { AGS_BAR } from 'src/constants/windows'
+
+import { SystemMenu } from './menus/SystemMenu/SystemMenu'
+import { SystemInfoMenu } from './menus/SystemInfoMenu/SystemInfoMenu'
+import { NetworkMenu } from './menus/NetworkMenu/NetworkMenu'
+import { MediaMenu } from './menus/MediaMenu/MediaMenu'
 
 function Left() {
   return Widget.Box({
@@ -56,7 +62,7 @@ function Right() {
   })
 }
 
-export function Bar(monitor = 0) {
+function BarWindow(monitor = 0) {
   return Widget.Window({
     name: AGS_BAR,
     className: 'bar',
@@ -73,3 +79,12 @@ export function Bar(monitor = 0) {
   })
 }
 
+export function Bar(monitor = 0) {
+  return [
+    BarWindow(monitor),
+    MediaMenu(monitor),
+    ...SystemMenu(monitor),
+    ...NetworkMenu(monitor),
+    ...SystemInfoMenu(monitor),
+  ]
+}

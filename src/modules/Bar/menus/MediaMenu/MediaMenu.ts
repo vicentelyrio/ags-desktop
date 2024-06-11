@@ -1,4 +1,4 @@
-import { AGS_MEDIA_PREVIEW } from 'src/constants/windows'
+import { AGS_BAR_MEDIA_MENU } from 'src/constants/windows'
 import { lastMediaPlayed } from 'src/states/media'
 import { findIconByName } from 'src/utils/findIconByName'
 import { MprisPlayer } from 'types/service/mpris'
@@ -11,13 +11,13 @@ function Preview(player: MprisPlayer) {
   if (!player || player?.play_back_status === 'Stopped') return Widget.Box()
 
   const img = Widget.Box({
-    className: 'mediaPreview__cover',
+    className: 'bar__media__cover',
     vpack: 'start',
     css: player.bind('cover_path').transform(p => `background-image: url('${p}');`),
   })
 
   const title = Widget.Label({
-    className: 'mediaPreview__title',
+    className: 'bar__media__title',
     wrap: true,
     hpack: 'start',
     truncate: 'end',
@@ -26,7 +26,7 @@ function Preview(player: MprisPlayer) {
   })
 
   const artist = Widget.Label({
-    className: 'mediaPreview__artist',
+    className: 'bar__media__artist',
     wrap: true,
     hpack: 'start',
     truncate: 'end',
@@ -35,7 +35,7 @@ function Preview(player: MprisPlayer) {
   })
 
   const icon = Widget.Icon({
-    className: 'mediaPreview__icon',
+    className: 'bar__media__icon',
     hexpand: true,
     hpack: 'end',
     vpack: 'start',
@@ -46,7 +46,7 @@ function Preview(player: MprisPlayer) {
   })
 
   return Widget.Box({
-    className: 'mediaPreview__container',
+    className: 'bar__media__container',
     children: [
       img,
       Widget.Box({
@@ -64,12 +64,12 @@ function Preview(player: MprisPlayer) {
   })
 }
 
-export function MediaPreview(monitor = 0) {
+export function MediaMenu(monitor = 0) {
   return (
     Widget.Window({
-      name: AGS_MEDIA_PREVIEW,
+      name: AGS_BAR_MEDIA_MENU,
       monitor,
-      className: 'mediaPreview',
+      className: 'bar__media',
       visible: false,
       layer: 'overlay',
       anchor: ['top'],
@@ -77,7 +77,7 @@ export function MediaPreview(monitor = 0) {
         child: Utils.merge([mpris.bind('players'), lastMediaPlayed.bind()], (players, last) => {
           return Preview(last ? last : players[0])
         }),
-        onHoverLost: () => App.closeWindow(AGS_MEDIA_PREVIEW),
+        onHoverLost: () => App.closeWindow(AGS_BAR_MEDIA_MENU),
       })
     })
   )

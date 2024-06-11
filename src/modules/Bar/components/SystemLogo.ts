@@ -1,9 +1,9 @@
-import { AGS_SYSTEM_MENU } from "src/constants/windows"
+import { AGS_BAR_SYSTEM_MENU } from "src/constants/windows"
 
 export function SystemLogo() {
   const logo = Widget.EventBox({
     onPrimaryClick: () => {
-      App.toggleWindow(AGS_SYSTEM_MENU)
+      App.toggleWindow(AGS_BAR_SYSTEM_MENU)
     },
     child: Widget.Icon({
       icon: 'arch-symbolic',

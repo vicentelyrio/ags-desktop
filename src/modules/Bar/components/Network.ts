@@ -1,4 +1,4 @@
-import { AGS_NETWORK } from 'src/constants/windows'
+import { AGS_BAR_NETWORK_MENU } from 'src/constants/windows'
 
 const network = await Service.import('network')
 
@@ -21,6 +21,6 @@ export function Network() {
       },
       shown: network.bind('primary').as(p => p || 'wifi'),
     }),
-    onPrimaryClick: () => App.toggleWindow(AGS_NETWORK),
+    onPrimaryClick: () => App.toggleWindow(AGS_BAR_NETWORK_MENU),
   })
 }

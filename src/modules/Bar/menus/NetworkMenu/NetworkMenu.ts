@@ -1,4 +1,4 @@
-import { AGS_NETWORK, AGS_NETWORK_CONFIRM } from 'src/constants/windows'
+import { AGS_BAR_NETWORK_MENU, AGS_BAR_NETWORK_MENU_CONFIRM } from 'src/constants/windows'
 import { PopupWindow } from 'src/components/PopupWindow/PopupWindow'
 import { Dialog } from 'src/components/Dialog/Dialog'
 
@@ -19,7 +19,7 @@ const network = await Service.import('network')
 function Separator() {
   return Widget.Separator({
     vertical: true,
-    className: 'network__separator',
+    className: 'bar__network__separator',
   })
 }
 
@@ -50,7 +50,7 @@ function Wifis() {
   selectedAPPass.setValue(null)
 
   return Widget.Box({
-    className: 'network__container',
+    className: 'bar__network__container',
     vertical: true,
     children: [
       NetworkToggle(),
@@ -60,26 +60,26 @@ function Wifis() {
   })
 }
 
-export function Network(monitor = 0) {
+export function NetworkMenu(monitor = 0) {
   return [
     ...PopupWindow(monitor, {
-      name: AGS_NETWORK,
+      name: AGS_BAR_NETWORK_MENU,
       monitor,
-      className: 'network',
+      className: 'bar__network',
       visible: false,
       layer: 'overlay',
       anchor: ['top', 'right'],
       child: Wifis()
     }),
     Dialog({
-      name: AGS_NETWORK_CONFIRM,
+      name: AGS_BAR_NETWORK_MENU_CONFIRM,
       monitor,
       visible: false,
       layer: 'overlay',
     }, {
       onConfirm: () => {
         connectToNetwork()
-        App.closeWindow(AGS_NETWORK_CONFIRM)
+        App.closeWindow(AGS_BAR_NETWORK_MENU_CONFIRM)
       },
       content: NetworkDialog()
     })

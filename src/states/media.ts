@@ -1,4 +1,4 @@
-import { AGS_MEDIA_PREVIEW } from 'src/constants/windows'
+import { AGS_BAR_MEDIA_MENU } from 'src/constants/windows'
 import { Source } from 'types/@girs/glib-2.0/glib-2.0.cjs'
 import { MprisPlayer } from 'types/service/mpris'
 
@@ -22,13 +22,13 @@ mpris.connect('player-closed', (service) => {
 
 // Player Preview timeout
 App.connect('window-toggled', (_app, windowname, visible) => {
-  if (windowname !== AGS_MEDIA_PREVIEW) return
+  if (windowname !== AGS_BAR_MEDIA_MENU) return
 
   clearTimeout(timer)
 
   if (visible) {
     timer = setTimeout(() => {
-      App.closeWindow(AGS_MEDIA_PREVIEW)
+      App.closeWindow(AGS_BAR_MEDIA_MENU)
     }, 2000)
   }
 })

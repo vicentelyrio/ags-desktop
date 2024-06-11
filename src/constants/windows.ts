@@ -1,9 +1,16 @@
-export const AGS_BAR = 'ags-bar'
-export const AGS_MEDIA_PREVIEW = 'ags-media-preview'
-export const AGS_LAUNCHER = 'ags-launcher'
-export const AGS_NOTIFICATION = 'ags-notifications'
-export const AGS_NETWORK = 'ags-network'
-export const AGS_NETWORK_CONFIRM = 'ags-network-confirm'
-export const AGS_SYSTEM_MENU = 'ags_system_menu'
+// BAR
+export const AGS_BAR = 'ags_bar'
+export const AGS_BAR_MEDIA_MENU = 'ags_bar_media_menu'
+export const AGS_BAR_NETWORK_MENU = 'ags_bar_network_menu'
+export const AGS_BAR_NETWORK_MENU_CONFIRM = 'ags_bar_network_menu_confirm'
+export const AGS_BAR_SYSTEM_INFO_MENU = 'ags_bar_system_info_menu'
+export const AGS_BAR_SYSTEM_MENU = 'ags_bar_system_menu'
+
+// LAUNCHER
+export const AGS_LAUNCHER = 'ags_launcher'
+
+// NOTIFICATION
+export const AGS_NOTIFICATION = 'ags_notifications'
+
+// SYSTEM
 export const AGS_SYSTEM_INFO = 'ags_system_info'
-export const AGS_SYSTEM_INFO_HOVER = 'ags_system_info_hover'

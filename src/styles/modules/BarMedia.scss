@@ -1,8 +1,8 @@
-.mediaPreview {
+.bar__media {
   background: transparent;
 }
 
-.mediaPreview__container {
+.bar__media__container {
   background: $color-crust;
   border-radius: $radius-md;
   padding: $space-md;
@@ -10,7 +10,7 @@
   margin-top: $space-sm;
 }
 
-.mediaPreview__cover {
+.bar__media__cover {
   background-size: cover;
   background-position: center;
   border-radius: $radius-md;
@@ -19,12 +19,12 @@
   margin-right: $space-md;
 }
 
-.mediaPreview__title {
+.bar__media__title {
   font-size: $font-md;
   margin-bottom: $space-xs;
 }
 
-.mediaPreview__artist {
+.bar__media__artist {
   font-size: $font-sm;
 }
 

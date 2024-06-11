@@ -1,11 +1,11 @@
 $progress-size: 96px;
 $progress-stroke: 10px;
 
-.system-info-hover {
+.bar__system-info {
   background: transparent;
 }
 
-.system-info-hover__container {
+.bar__system-info__container {
   background: $color-crust;
   border-radius: $radius-md;
   padding: $space-md;
@@ -13,7 +13,7 @@ $progress-stroke: 10px;
   margin-right: 390px;
 }
 
-.system-info-hover__graph {
+.bar__system-info__graph {
   background-color: $color_surface0;
   color: $color-primary;
   min-width: $progress-size;
@@ -21,7 +21,7 @@ $progress-stroke: 10px;
   font-size: $progress-stroke;
 }
 
-.system-info-hover__graph__label {
+.bar__system-info__graph__label {
   font-size: $font-md;
   font-weight: bold;
 }
