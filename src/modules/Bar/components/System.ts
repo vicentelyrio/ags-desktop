@@ -20,8 +20,11 @@ const ramProgress = Widget.CircularProgress({
 })
 
 export function System() {
-  return Widget.EventBox({
-    onPrimaryClick: () => App.toggleWindow(AGS_BAR_SYSTEM_INFO_MENU),
+  return Widget.Button({
+    className: 'bar__unstyled__button',
+    onClicked: () => {
+      App.toggleWindow(AGS_BAR_SYSTEM_INFO_MENU)
+    },
     child: Widget.Box({
       spacing: 8,
       children: [

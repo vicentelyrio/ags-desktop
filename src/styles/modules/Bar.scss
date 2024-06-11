@@ -34,6 +34,11 @@ $bar-progress-stroke: 4px;
   }
 }
 
+.bar__unstyled__button {
+  @include unstyledButton;
+}
+
+
 // Sections
 .bar__left {}
 .bar__center {}

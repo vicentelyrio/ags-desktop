@@ -1,6 +1,5 @@
-.bar__network__container {
+.bar__network {
   background: transparent;
-  margin-right: 160px;
 }
 
 .bar__network__container {
@@ -9,6 +8,7 @@
   min-width: 350px;
   padding: $space-md;
   margin-top: $space-sm;
+  margin-right: 160px;
 }
 
 .bar__network__separator {
@@ -64,7 +64,6 @@
 .bar__network__list__item__icon {
   border-radius: 50%;
   background-color: $color-base;
-  padding: $space-sm;
   margin-right: $space-md;
 }
 
@@ -74,6 +73,7 @@
 
 // Dialog
 .bar__network__dialog {
+  padding: $space-lg;
 }
 
 .bar__network__dialog__title {

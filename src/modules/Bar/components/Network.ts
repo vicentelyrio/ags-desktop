@@ -13,7 +13,8 @@ const WiredIndicator = () => Widget.Icon({
 })
 
 export function Network() {
-  return Widget.EventBox({
+  return Widget.Button({
+    className: 'bar__unstyled__button',
     child: Widget.Stack({
       children: {
         wifi: WifiIndicator(),
@@ -21,6 +22,8 @@ export function Network() {
       },
       shown: network.bind('primary').as(p => p || 'wifi'),
     }),
-    onPrimaryClick: () => App.toggleWindow(AGS_BAR_NETWORK_MENU),
+    onClicked: () => {
+      App.toggleWindow(AGS_BAR_NETWORK_MENU)
+    },
   })
 }

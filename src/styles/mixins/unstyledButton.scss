@@ -1,0 +1,9 @@
+@mixin unstyledButton() {
+  &, &:hover, &:active {
+    background: transparent;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    padding: 0;
+  }
+}
+
