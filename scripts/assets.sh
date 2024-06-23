@@ -1,6 +1,6 @@
 #!/bin/sh
 
 copyAssets() {
-  rsync -a --delete $WORK_DIR/assets $DEST_DIR
+  rsync -a --delete --mkpath $1 $2
 }
 

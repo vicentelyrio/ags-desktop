@@ -1,16 +1,4 @@
-import { dayjs } from 'src/utils/locale'
-
-const date = Variable('', {
-  poll: [1000*60*10, function() {
-    return dayjs().format('ddd  D  MMM')
-  }]
-})
-
-const time = Variable('', {
-  poll: [2000, function() {
-    return dayjs().format('HH:mm')
-  }]
-})
+import { date, time } from 'src/states/date'
 
 export function Clock() {
   return (

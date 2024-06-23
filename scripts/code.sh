@@ -1,10 +1,10 @@
 #!/bin/sh
 
 buildCode() {
-  $BIN/esbuild $WORK_DIR/main.ts --outdir=$DEST_DIR --bundle --format=esm --external:resource://* --external:gi://* --external:file://*
+  $BIN/esbuild $WORK_DIR/$1 --outdir=$2 --bundle --format=esm --external:resource://* --external:gi://* --external:file://*
 }
 
 loadCode() {
   ags -q
-  ags -c $DEST_FILE $1
+  ags -c $1 $2
 }

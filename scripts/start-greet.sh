@@ -12,11 +12,9 @@ source $AGS_DIR/scripts/style.sh
 source $AGS_DIR/scripts/assets.sh
 
 # build resources
-copyAssets $WORK_DIR/assets $DEST_DIR
-sleep 1
-buildCode main.ts $DEST_DIR
-buildStyle $WORK_DIR/styles/main.scss $DEST_DIR/main.css
+buildCode greet.ts $DEST_DIR
+buildStyle $WORK_DIR/styles/greet.scss $DEST_DIR/greet.css
 
 # start resources
-loadCode $DEST_DIR/main.js &
-loadStyle $DEST_DIR/main.css
+loadCode $DEST_DIR/greet.js &
+loadStyle $DEST_DIR/greet.css
