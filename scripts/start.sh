@@ -4,7 +4,7 @@ set -e
 
 AGS_DIR="$HOME/.config/ags"
 DEST_DIR="$AGS_DIR/build"
-WORK_DIR="$AGS_DIR/src"
+WORK_DIR="$AGS_DIR/src/desktop"
 BIN="$AGS_DIR/node_modules/.bin"
 
 source $AGS_DIR/scripts/code.sh
@@ -12,11 +12,11 @@ source $AGS_DIR/scripts/style.sh
 source $AGS_DIR/scripts/assets.sh
 
 # build resources
-copyAssets $WORK_DIR/assets $DEST_DIR
+copyAssets $AGS_DIR/src/assets $DEST_DIR
 sleep 1
 buildCode main.ts $DEST_DIR
 buildStyle $WORK_DIR/styles/main.scss $DEST_DIR/main.css
 
 # start resources
-loadCode $DEST_DIR/main.js &
+loadCode $DEST_DIR/main.js ags &
 loadStyle $DEST_DIR/main.css

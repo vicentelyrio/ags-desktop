@@ -4,37 +4,27 @@ set -e
 
 AGS_DIR="$HOME/.config/ags"
 DEST_DIR="$AGS_DIR/build"
-WORK_DIR="$AGS_DIR/src"
+WORK_DIR="$AGS_DIR/src/greet"
 BIN="$AGS_DIR/node_modules/.bin"
 
 source $AGS_DIR/scripts/code.sh
 source $AGS_DIR/scripts/style.sh
-source $AGS_DIR/scripts/assets.sh
 
 # build resources
-copyAssets $WORK_DIR/assets $DEST_DIR/assets
-sleep 1
 buildCode greet.ts $DEST_DIR
 buildStyle $WORK_DIR/styles/greet.scss $DEST_DIR/greet.css
 
 # start resources
-loadCode $DEST_DIR/greet.js &
+loadCode $DEST_DIR/greet.js greet &
 loadStyle $DEST_DIR/greet.css
 
 # watch for changes on src
 inotifywait -m $WORK_DIR -e create,modify,delete -r |
   while read -r directory action file; do
     case "$file" in
-      (*.svg)
-        copyAssets $WORK_DIR/assets $DEST_DIR/assets
-        sleep 1
-        loadCode $DEST_DIR/greet.js &
-      ;;
-    esac
-    case "$file" in
       (*.ts)
         buildCode greet.ts $DEST_DIR
-        loadCode $DEST_DIR/greet.js &
+        loadCode $DEST_DIR/greet.js greet &
       ;;
     esac
     case "$file" in
