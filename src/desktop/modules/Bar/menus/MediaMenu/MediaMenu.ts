@@ -1,6 +1,6 @@
 import { AGS_BAR_MEDIA_MENU } from 'src/desktop/constants/windows'
 import { lastMediaPlayed } from 'src/desktop/states/media'
-import { findIconByName } from 'src/desktop/utils/findIconByName'
+import { findIconByName } from 'src/utils/findIconByName'
 import { MprisPlayer } from 'types/service/mpris'
 
 const mpris = await Service.import('mpris')

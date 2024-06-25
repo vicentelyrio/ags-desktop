@@ -2,7 +2,7 @@ import { dayjs } from 'src/utils/locale'
 
 export const date = Variable('', {
   poll: [1000*60*10, function() {
-    return dayjs().format('ddd  D  MMM')
+    return dayjs().format('MMMM D, YYYY')
   }]
 })
 

@@ -3,7 +3,7 @@
 set -e
 
 AGS_DIR="$HOME/.config/ags"
-DEST_DIR="$AGS_DIR/build"
+DEST_DIR="$AGS_DIR/greet"
 WORK_DIR="$AGS_DIR/src/greet"
 BIN="$AGS_DIR/node_modules/.bin"
 

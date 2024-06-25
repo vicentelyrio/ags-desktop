@@ -1,5 +1,5 @@
 import { AGS_NOTIFICATION } from 'src/desktop/constants/windows'
-import { splitString } from 'src/desktop/utils/splitString'
+import { splitString } from 'src/utils/splitString'
 
 const notifications = await Service.import('notifications')
 

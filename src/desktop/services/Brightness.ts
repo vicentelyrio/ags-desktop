@@ -1,4 +1,4 @@
-import { debounce } from "src/desktop/utils/debounce"
+import { debounce } from 'src/utils/debounce'
 
 type CallbackType = (_: any, ...args: any) => void
 

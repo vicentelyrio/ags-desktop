@@ -1,9 +1,9 @@
 export function Password(onLogin: (text: string) => void) {
   return Widget.Entry({
-    placeholder_text: 'Password',
-    hexpand: true,
+    vexpand: false,
+    xalign: 0.5,
     visibility: false,
-    className: 'greet__password',
+    className: 'greet__password__field',
     on_accept: ({ text }) => onLogin(text || ''),
   })
 }

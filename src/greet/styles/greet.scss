@@ -4,11 +4,47 @@
 @import '../../styles/mixins/switch.scss';
 @import '../../styles/mixins/unstyledButton.scss';
 
-// Clock
 .greet__clock__label {
   font-size: $font-xxl;
 }
 
+.greet__date__label {
+  font-size: $font-lg;
+}
+
 .greet__password {
   min-height: $space-md;
+}
+
+.greet__avatar {
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  min-width: 128px;
+  min-height: 128px;
+}
+
+.greet__username {
+  font-size: $font-lg;
+  margin-top: $space-md;
+}
+
+.greet__greet__input {
+  min-width: 256px;
+}
+
+.greet__password__field {
+  border-radius: $radius-md;
+  min-width: 256px;
+  min-height: 48px;
+  margin: $space-lg 0;
+}
+
+.greet__auth__wallpaper {
+  background-size: cover;
+  background-position: center;
+}
+
+.greet__auth__cover {
+  background: rgba(0, 0, 0, .6);
 }
