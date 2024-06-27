@@ -18,10 +18,8 @@ const revealer = Widget.Revealer({
 async function onLogin(pass: string) {
   loggingin.value = true
 
-  console.log(username, pass)
-
   return greetd
-    .login(username, pass, 'Hyprland')
+    .login(username, pass, '/home/vicentelyrio/.config/ags/scripts/start-session.sh')
     .catch((res) => {
       loggingin.value = false
       response.label = res?.description || JSON.stringify(res)
