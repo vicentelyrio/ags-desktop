@@ -17,7 +17,7 @@ export const Greet = Widget.Window({
       child: Widget.Box({
         className: 'greet__auth__wallpaper',
         expand: true,
-        css: `background-image: url("/usr/share/archtheme/night/assets/wallpapers/flowers.png")`,
+        css: `background-image: url("/home/vicentelyrio/themes/night/assets/wallpapers/flowers.png")`,
       }),
       overlay: Widget.Box({
         className: 'greet__auth__cover',

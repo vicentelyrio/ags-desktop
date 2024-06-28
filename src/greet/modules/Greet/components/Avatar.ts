@@ -4,6 +4,6 @@ export function Avatar() {
     hpack: 'center',
     vpack: 'center',
     expand: false,
-    css: `background-image: url("/usr/share/archtheme/night/assets/avatar.jpg")`,
+    css: `background-image: url("/home/vicentelyrio/themes/night/assets/avatar.jpg")`,
   })
 }
