@@ -1,10 +1,10 @@
+import GLib from 'gi://GLib?version=2.0'
+
 import { Message } from './Message'
 import { Password } from './Password'
 import { username } from './Username'
 
 const greetd = await Service.import('greetd')
-
-const loggingin = Variable(false)
 
 const password = Password(onLogin)
 
@@ -15,17 +15,34 @@ const revealer = Widget.Revealer({
   child: response,
 })
 
-async function onLogin(pass: string) {
-  loggingin.value = true
+const HOME = GLib.getenv('HOME')
 
-  return greetd
-    .login(username, pass, '/home/vicentelyrio/.config/ags/scripts/start-session.sh')
-    .catch((res) => {
-      loggingin.value = false
-      response.label = res?.description || JSON.stringify(res)
-      password.text = ''
-      revealer.reveal_child = true
-    })
+function isGreetdContext() {
+  const greetEnv = GLib.getenv('GREETD_SOCK')
+  return greetEnv !== null
+}
+
+function onError(error: string) {
+  response.label = error
+  password.text = ''
+  revealer.reveal_child = true
+}
+
+async function onLogin(pass: string) {
+  try {
+    if (isGreetdContext()) {
+      return greetd
+        .login(username, pass, `/etc/greetd/start-session.sh`)
+        .catch(() => onError('Unauthorized'))
+    }
+
+    Utils.authenticateUser(username, pass)
+      .then(() => Utils.subprocess(['bash', '-c', `${HOME}/.config/ags/run/greet-hide.sh`]))
+      .catch(() => onError('Unauthorized'))
+  }
+  catch (res) {
+    return onError('Error trying to login')
+  }
 }
 
 export function Input() {

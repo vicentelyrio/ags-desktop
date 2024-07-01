@@ -15,9 +15,6 @@ source $AGS_DIR/scripts/assets.sh
 buildCode greet.ts $DEST_DIR
 buildStyle $WORK_DIR/styles/greet.scss $DEST_DIR/greet.css
 
-# start resources
-# loadCode $DEST_DIR/greet.js greet &
-# loadStyle $DEST_DIR/greet.css
-
-# sudo cp $DEST_DIR/greet.js /etc/greetd/greet.js
-# sudo cp $DEST_DIR/greet.css /etc/greetd/greet.css
+# copy to greet
+sudo cp $DEST_DIR/greet.js /etc/greetd/greet.js
+sudo cp $DEST_DIR/greet.css /etc/greetd/greet.css

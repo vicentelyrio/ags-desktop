@@ -16,7 +16,3 @@ copyAssets $AGS_DIR/src/assets $DEST_DIR
 sleep 1
 buildCode main.ts $DEST_DIR
 buildStyle $WORK_DIR/styles/main.scss $DEST_DIR/main.css
-
-# start resources
-loadCode $DEST_DIR/main.js ags &
-loadStyle $DEST_DIR/main.css
