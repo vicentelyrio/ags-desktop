@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ags -t ags_launcher
+ags -b ags_desktop -t ags_launcher
