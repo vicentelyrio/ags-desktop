@@ -5,6 +5,7 @@ export const AGS_BAR_NETWORK_MENU = 'ags_bar_network_menu'
 export const AGS_BAR_NETWORK_MENU_CONFIRM = 'ags_bar_network_menu_confirm'
 export const AGS_BAR_SYSTEM_INFO_MENU = 'ags_bar_system_info_menu'
 export const AGS_BAR_SYSTEM_MENU = 'ags_bar_system_menu'
+export const AGS_ICONS = 'ags_icons'
 
 // LAUNCHER
 export const AGS_LAUNCHER = 'ags_launcher'

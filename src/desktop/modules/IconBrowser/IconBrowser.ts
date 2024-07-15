@@ -1,4 +1,5 @@
 import Gtk from 'gi://Gtk?version=3.0'
+import { AGS_ICONS } from 'src/desktop/constants/windows'
 
 const IconPicker = () => {
   const selected = Widget.Label({
@@ -57,16 +58,16 @@ const IconPicker = () => {
   })
 }
 
-export const IconBrowser = new Gtk.Window({
-  name: 'icon-browser',
-  child: IconPicker(),
-})
+export function IconBrowser(monitor = 0) {
+  return Widget.Window({
+    monitor,
+    name: AGS_ICONS,
+    setup: (self) => (
+      self.keybind('Escape', () => App.closeWindow(AGS_ICONS))
+    ),
+    visible: false,
+    keymode: 'exclusive',
+    child: IconPicker(),
+  })
+}
 
-IconBrowser.show_all()
-
-IconBrowser.connect('delete-event', () => {
-  App.quit()
-  return true
-})
-
-// export default { windows: [win] }

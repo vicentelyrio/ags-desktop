@@ -4,6 +4,7 @@ import { Date } from './components/Date'
 import { Username } from './components/Username'
 import { Input } from './components/Input'
 import { Background } from './components/Background'
+import { Actions } from './components/Actions'
 
 export const Greet = Widget.Window({
   className: 'greet',
@@ -37,7 +38,14 @@ export const Greet = Widget.Window({
                 Username(),
                 Input()
               ]
-            })
+            }),
+            endWidget: Widget.Box({
+              vertical: true,
+              vpack: 'center',
+              children: [
+                Actions()
+              ]
+            }),
           })
         ]
       })
