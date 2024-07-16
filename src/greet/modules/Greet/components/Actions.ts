@@ -6,7 +6,7 @@ export function Actions() {
       spacing: 32,
       children: [
         Widget.EventBox({
-          onPrimaryClick: () => () => Utils.exec('reboot'),
+          onPrimaryClick: () => Utils.exec('reboot'),
           child: Widget.Icon({
             className: 'greet__reboot',
             icon: 'view-refresh-symbolic',
@@ -14,7 +14,7 @@ export function Actions() {
           })
         }),
         Widget.EventBox({
-          onPrimaryClick: () => () => Utils.exec('shutdown now'),
+          onPrimaryClick: () => Utils.exec('shutdown now'),
           child: Widget.Icon({
             className: 'greet__shutdown',
             icon: 'system-shutdown-symbolic',
