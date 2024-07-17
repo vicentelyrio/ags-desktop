@@ -68,6 +68,16 @@ function DeviceList() {
 }
 
 export function BluetoothMenu(monitor = 0) {
+  bluetooth.connect('device-removed', (bl) => {
+    console.log('olar', bl)
+    // Utils.notify({
+    //   summary: bl.name ?? bl.alias,
+    //   body: 'Connection established',
+    //   iconName: `${bl.icon_name}-symbolic`,
+    //   timeout: 4000
+    // })
+  })
+
   return [
     ...PopupWindow(monitor, {
       name: AGS_BAR_BLUETOOTH_MENU,
