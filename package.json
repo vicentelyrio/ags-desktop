@@ -5,6 +5,12 @@
     "name": "vicentelyrio",
     "email": "vicentelyrio@gmail.com"
   },
+  "scripts": {
+    "dev:desk": "./scripts/desktop-dev.sh",
+    "build:desk": "./scripts/desktop-build.sh",
+    "dev:greet": "./scripts/greet-dev.sh",
+    "build:greet": "./scripts/greet-build.sh"
+  },
   "license": "MIT",
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
   "devDependencies": {

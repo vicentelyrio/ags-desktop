@@ -68,7 +68,7 @@ export function NetworkMenu(monitor = 0) {
       className: 'bar__network',
       visible: false,
       layer: 'overlay',
-      anchor: ['top', 'right'],
+      anchor: ['top', 'left'],
       child: Wifis()
     }),
     Dialog({

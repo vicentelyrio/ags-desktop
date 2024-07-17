@@ -1,4 +1,6 @@
+import { onOpenMenu } from 'src/desktop/components/PopupWindow/PopupWindow'
 import { AGS_BAR_NETWORK_MENU } from 'src/desktop/constants/windows'
+import { getBounds } from 'src/utils/getBounds'
 
 const network = await Service.import('network')
 
@@ -22,8 +24,9 @@ export function Network() {
       },
       shown: network.bind('primary').as(p => p || 'wifi'),
     }),
-    onClicked: () => {
-      App.toggleWindow(AGS_BAR_NETWORK_MENU)
+    onPrimaryClickRelease: (self) => {
+      const { centerx } = getBounds(self)
+      onOpenMenu(AGS_BAR_NETWORK_MENU, centerx - 175, 6)
     },
   })
 }

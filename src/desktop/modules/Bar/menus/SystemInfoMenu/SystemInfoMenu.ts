@@ -38,7 +38,7 @@ export function SystemInfoMenu(monitor = 0) {
     className: 'bar__system-info',
     visible: false,
     layer: 'overlay',
-    anchor: ['top', 'right'],
+    anchor: ['top', 'left'],
     child: System()
   })
 }

@@ -1,20 +1,16 @@
+import { onOpenMenu } from 'src/desktop/components/PopupWindow/PopupWindow'
+import { AGS_BAR_BLUETOOTH_MENU } from 'src/desktop/constants/windows'
+import { getBounds } from 'src/utils/getBounds'
+
 const bluetooth = await Service.import('bluetooth')
 
 export function Bluetooth() {
-  const connectedList = Widget.Box({
-    setup: self => self.hook(bluetooth, self => {
-      self.children = bluetooth.connected_devices
-        .map(({ icon_name, name }) => Widget.Box([
-          Widget.Icon(icon_name + '-symbolic'),
-          Widget.Label(name),
-        ]));
-
-      self.visible = bluetooth.connected_devices.length > 0;
-    }, 'notify::connected-devices'),
-  })
-
   const icon = Widget.EventBox({
-    onPrimaryClick: () => {
+    onPrimaryClick: (self) => {
+      const { centerx } = getBounds(self)
+      onOpenMenu(AGS_BAR_BLUETOOTH_MENU, centerx - 175, 6)
+    },
+    onSecondaryClick: () => {
       Utils.exec(`hyprctl dispatch -- exec overskride`)
     },
     child: Widget.Icon({
@@ -26,8 +22,8 @@ export function Bluetooth() {
 
   return Widget.Box({
     children: [
-      connectedList,
       icon
     ]
   })
 }
+

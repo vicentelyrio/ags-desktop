@@ -19,10 +19,9 @@ function NetworkItem(ap: AccessPoint, primary: boolean) {
     className: ap.active ? 'bar__network__list__item bar__network__list__item--active' : 'bar__network__list__item',
     child: Widget.Box({
       children: [
-        Widget.Icon({
+        Widget.CenterBox({
           className: 'bar__network__list__item__icon',
-          icon: ap.iconName,
-          size: 20
+          centerWidget: Widget.Icon({ icon: ap.iconName, size: 18 })
         }),
         Widget.Label({
           label: ap.ssid,

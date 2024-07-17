@@ -1,10 +1,13 @@
+import { onOpenMenu } from 'src/desktop/components/PopupWindow/PopupWindow'
 import { AGS_BAR_SYSTEM_MENU } from 'src/desktop/constants/windows'
+import { getBounds } from 'src/utils/getBounds'
 
 export function SystemLogo() {
   const logo = Widget.Button({
     className: 'bar__unstyled__button',
-    onClicked: () => {
-      App.toggleWindow(AGS_BAR_SYSTEM_MENU)
+    onPrimaryClickRelease: (self) => {
+      const { x } = getBounds(self)
+      onOpenMenu(AGS_BAR_SYSTEM_MENU, x, 6)
     },
     child: Widget.Icon({
       icon: 'arch-symbolic',

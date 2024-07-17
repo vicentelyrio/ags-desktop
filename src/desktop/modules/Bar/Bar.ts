@@ -18,6 +18,7 @@ import { SystemMenu } from './menus/SystemMenu/SystemMenu'
 import { SystemInfoMenu } from './menus/SystemInfoMenu/SystemInfoMenu'
 import { NetworkMenu } from './menus/NetworkMenu/NetworkMenu'
 import { MediaMenu } from './menus/MediaMenu/MediaMenu'
+import { BluetoothMenu } from './menus/BluetoothMenu/BluetoothMenu'
 
 function Left() {
   return Widget.Box({
@@ -86,5 +87,6 @@ export function Bar(monitor = 0) {
     ...SystemMenu(monitor),
     ...NetworkMenu(monitor),
     ...SystemInfoMenu(monitor),
+    ...BluetoothMenu(monitor),
   ]
 }

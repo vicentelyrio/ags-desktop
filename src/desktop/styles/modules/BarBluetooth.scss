@@ -1,0 +1,71 @@
+.bar__bluetooth {
+  background: transparent;
+}
+
+.bar__bluetooth__container {
+  background: $color-crust;
+  border-radius: $radius-md;
+  min-width: 350px;
+  padding: $space-md;
+}
+
+.bar__bluetooth__separator {
+  background: $color-base;
+  margin: $space-md 0;
+}
+
+// TOGGLE
+.bar__bluetooth__toggle {
+  padding: 0 $space-sm;
+}
+
+.bar__bluetooth__toggle__label {
+  font-size: $font-md;
+  font-weight: bold;
+}
+
+.bar__bluetooth__toggle__switch {
+  @include switch;
+}
+
+// LIST
+.bar__bluetooth__list__empty {
+  font-size: $font-md;
+  padding: $space-md;
+}
+
+.bar__bluetooth__list__scan {
+  background: transparent;
+}
+
+// ITEM
+.bar__bluetooth__list__item {
+  background: transparent;
+  border-radius: $radius-md;
+  padding: $space-sm $space-md;
+  margin-bottom: $space-xs;
+
+  &:hover {
+    background: $color-mantle;
+  }
+  &--active {
+    background: $color-base;
+
+    .bar__bluetooth__list__item__icon {
+      background-color: $color-primary;
+    }
+  }
+}
+
+.bar__bluetooth__list__item__icon {
+  border-radius: 50%;
+  background-color: $color-base;
+  margin-right: $space-md;
+  min-width: 20px;
+  min-height: 20px;
+  padding: 4px;
+}
+
+.bar__bluetooth__list__item__label {
+  font-size: $font-md;
+}

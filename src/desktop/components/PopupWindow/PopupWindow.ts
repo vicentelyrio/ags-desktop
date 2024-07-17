@@ -13,7 +13,7 @@ export function PopupWindow(monitor = 0, windowProps: WindowProps) {
 
   const win = Widget.Window({
     ...windowProps,
-    attribute: 'popup'
+    attribute: 'popup',
   })
 
   win.connect('notify::visible', (window) => {
@@ -58,3 +58,13 @@ export function PopupWindow(monitor = 0, windowProps: WindowProps) {
   return [closer, win]
 }
 
+export function onOpenMenu(windowName: string, x: number, y: number) {
+  const currentWindow: any = App.windows.find(({ name }) => name === windowName)
+
+  currentWindow.child.css = `
+    margin-top: ${y}px;
+    margin-left: ${x}px;
+  `
+
+  App.toggleWindow(windowName)
+}
