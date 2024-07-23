@@ -1,15 +1,21 @@
+[AGS](https://aylur.github.io/ags-docs/) based desktop
 
-# Starter Config
+![Greet](https://github.com/vicentelyrio/ags-desktop/blob/main/public/greet.png)
 
-if suggestions don't work, first make sure
-you have TypeScript LSP working in your editor
+![Desktop](https://github.com/vicentelyrio/ags-desktop/blob/main/public/desktop.png)
 
-if you do not want typechecking only suggestions
+![System menu](https://github.com/vicentelyrio/ags-desktop/blob/main/public/bar-system-menu.png)
 
-```json
-// tsconfig.json
-"checkJs": false
-```
+![Performance menu](https://github.com/vicentelyrio/ags-desktop/blob/main/public/bar-performance-menu.png)
 
-types are symlinked to:
-/usr/share/com.github.Aylur.ags/types
+![Wifi menu](https://github.com/vicentelyrio/ags-desktop/blob/main/public/bar-wifi-menu.png)
+
+![Bluetooth menu](https://github.com/vicentelyrio/ags-desktop/blob/main/public/bar-bluetooth-menu.png)
+
+![Media menu](https://github.com/vicentelyrio/ags-desktop/blob/main/public/bar-media-menu.png)
+
+![Launcher](https://github.com/vicentelyrio/ags-desktop/blob/main/public/launcher.png)
+
+![Launcher Apps](https://github.com/vicentelyrio/ags-desktop/blob/main/public/launcher-apps.png)
+
+![Launcher Calc](https://github.com/vicentelyrio/ags-desktop/blob/main/public/launcher-calc.png)
