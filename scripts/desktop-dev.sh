@@ -18,7 +18,7 @@ buildCode main.ts $DEST_DIR
 buildStyle $WORK_DIR/styles/main.scss $DEST_DIR/main.css
 
 # start resources
-loadCode $DEST_DIR/main.js ags &
+loadCode $DEST_DIR/main.js ags_desktop &
 loadStyle $DEST_DIR/main.css
 
 # watch for changes on src
@@ -28,13 +28,13 @@ inotifywait -m $WORK_DIR -e create,modify,delete -r |
       (*.svg)
         copyAssets $AGS_DIR/src/assets $DEST_DIR
         sleep 1
-        loadCode $DEST_DIR/main.js ags &
+        loadCode $DEST_DIR/main.js ags_desktop &
       ;;
     esac
     case "$file" in
       (*.ts)
         buildCode main.ts $DEST_DIR
-        loadCode $DEST_DIR/main.js ags &
+        loadCode $DEST_DIR/main.js ags_desktop &
       ;;
     esac
     case "$file" in
