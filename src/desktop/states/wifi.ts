@@ -1,4 +1,8 @@
-export const KNOWN_NETWORKS = '/home/vicentelyrio/.config/ags/data/.known_networks'
+import GLib from 'gi://GLib?version=2.0'
+
+const HOME = GLib.getenv('HOME')
+
+export const KNOWN_NETWORKS = `${HOME}/.config/ags/data/.known_networks`
 
 export type AccessPoint = {
   bssid: string | null

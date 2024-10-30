@@ -1,3 +1,4 @@
+import GLib from 'gi://GLib?version=2.0'
 import { AGS_BAR_BLUETOOTH_MENU } from 'src/desktop/constants/windows'
 
 import { PopupWindow } from 'src/desktop/components/PopupWindow/PopupWindow'
@@ -7,6 +8,9 @@ import { BluetoothDevice } from 'types/service/bluetooth'
 import { scanning } from 'src/desktop/states/bluetooth'
 
 const bluetooth = await Service.import('bluetooth')
+
+const HOME = GLib.getenv('HOME')
+const SCANNER = `${HOME}/ags/src/desktop/scripts/bluetooth_scan.sh`
 
 function Separator() {
   return Widget.Separator({
@@ -55,7 +59,7 @@ function DeviceList() {
                 Utils.subprocess([
                   'bash',
                   '-c',
-                  '~/.config/ags/src/desktop/scripts/bluetooth_scan.sh 10'
+                  `${SCANNER} 10`
                 ])
                 scanning.value = true
                 setTimeout(() => scanning.value = false, 10000)
@@ -68,14 +72,13 @@ function DeviceList() {
 }
 
 export function BluetoothMenu(monitor = 0) {
-  bluetooth.connect('device-removed', (bl) => {
-    console.log('olar', bl)
-    // Utils.notify({
-    //   summary: bl.name ?? bl.alias,
-    //   body: 'Connection established',
-    //   iconName: `${bl.icon_name}-symbolic`,
-    //   timeout: 4000
-    // })
+  bluetooth.connect('device-removed', (bl: any) => {
+    Utils.notify({
+      summary: bl.name ?? bl.alias,
+      body: 'Connection established',
+      iconName: `${bl.icon_name}-symbolic`,
+      timeout: 4000
+    })
   })
 
   return [

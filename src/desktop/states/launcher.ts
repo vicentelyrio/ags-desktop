@@ -1,6 +1,7 @@
 export enum SearchType {
   APP = 'app',
   CALC = 'calc',
+  PROJECT = 'project',
 }
 
 export type SearchInputType = {
