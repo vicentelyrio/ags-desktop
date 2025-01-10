@@ -53,6 +53,7 @@ function findFreeWorkspace() {
 export function onProjectSelected({ path, windows }: Project) {
   const workspace = findFreeWorkspace()
 
+  // Open windows
   windows.forEach((command) => {
     Utils.subprocess([
       'bash',
@@ -60,6 +61,13 @@ export function onProjectSelected({ path, windows }: Project) {
       command ? `${LAUNCHER} ${path} ${workspace} ${command}` : `${LAUNCHER} ${path} ${workspace}`
     ])
   })
+
+  // Open special workspace with Vim
+  Utils.subprocess([
+    'bash',
+    '-c',
+    `${LAUNCHER} ${path} special /usr/bin/nvim`
+  ])
 
   App.closeWindow(AGS_LAUNCHER)
 }
