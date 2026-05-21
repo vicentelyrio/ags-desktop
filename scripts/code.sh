@@ -5,6 +5,6 @@ buildCode() {
 }
 
 loadCode() {
-  ags -b $2 -q
-  ags -c $1 -b $2 $3
+  agsv1 -b $2 -q
+  agsv1 -c $1 -b $2 $3
 }

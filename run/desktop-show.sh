@@ -1,4 +1,4 @@
 #!/bin/sh
 
-ags -b ags_desktop -c $HOME/.config/ags/build/main.js
+agsv1 -b ags_desktop -c $HOME/.config/ags/build/main.js
 

@@ -11,9 +11,22 @@ export function PopupWindow(monitor = 0, windowProps: WindowProps) {
     App.closeWindow(closerName)
   }
 
+  // The menu itself owns the keyboard grab (for Escape-to-close). Putting
+  // `keymode: 'exclusive'` on the closer overlay (top layer) instead causes
+  // the closer to steal pointer focus from the menu (overlay layer) under
+  // recent gtk-layer-shell, so clicking a menu item closed the menu without
+  // ever firing the button's onPrimaryClick.
   const win = Widget.Window({
     ...windowProps,
     attribute: 'popup',
+    keymode: windowProps.keymode ?? 'on-demand',
+    setup: (self) => {
+      // Allow the caller's setup to still run if provided.
+      if (typeof windowProps.setup === 'function') {
+        try { windowProps.setup(self) } catch { /* ignore */ }
+      }
+      self.keybind('Escape', close)
+    },
   })
 
   win.connect('notify::visible', (window) => {
@@ -24,21 +37,22 @@ export function PopupWindow(monitor = 0, windowProps: WindowProps) {
 
     if (window.visible) {
       // close other popups
-      App.windows.forEach((win) => {
-        // skip windows that isn't popups
-        if ((win as any).attribute !== 'popup') return
-
+      App.windows.forEach((w) => {
+        // skip windows that aren't popups
+        if ((w as any).attribute !== 'popup') return
         // skip hidden windows
-        if (!win.visible) return
+        if (!w.visible) return
+        // skip the current window
+        if (w.name === name) return
 
-        // skip if is the current window
-        if (win.name === name) return
-
-        App.toggleWindow(win?.name as string)
+        App.toggleWindow(w?.name as string)
       })
     }
   })
 
+  // Invisible full-screen catcher that closes the popup when the user clicks
+  // anywhere outside the menu. Kept on `top` layer so the menu (overlay)
+  // visually and interactively sits above it.
   const closer = Widget.Window({
     css: 'background: transparent;',
     name: closerName,
@@ -49,10 +63,8 @@ export function PopupWindow(monitor = 0, windowProps: WindowProps) {
     child: Widget.EventBox({
       onPrimaryClick: close,
       onSecondaryClick: close,
-      onMiddleClick: close
+      onMiddleClick: close,
     }),
-    keymode: 'exclusive',
-    setup: (self) => self.keybind('Escape', close),
   })
 
   return [closer, win]

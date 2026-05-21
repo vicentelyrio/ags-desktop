@@ -5,5 +5,5 @@ buildStyle() {
 }
 
 loadStyle() {
-  ags --run-js "App.resetCss(); App.applyCss('$1');"
+  agsv1 --run-js "App.resetCss(); App.applyCss('$1');"
 }

@@ -1,4 +1,3 @@
 #!/bin/sh
 
-ags -b ags_desktop -q
-
+agsv1 -b ags_desktop -q

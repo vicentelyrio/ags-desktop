@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # hide desktop
-ags -b ags_desktop -q
+agsv1 -b ags_desktop -q
 
 # show greet
-ags -b ags_greet -c /etc/greetd/greet.js
+agsv1 -b ags_greet -c /etc/greetd/greet.js
 

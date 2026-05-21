@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # hide greet
-ags -b ags_greet -q
+agsv1 -b ags_greet -q
 
 # show desktop
-ags -b ags_desktop -c $HOME/.config/ags/build/main.js
+agsv1 -b ags_desktop -c $HOME/.config/ags/build/main.js
