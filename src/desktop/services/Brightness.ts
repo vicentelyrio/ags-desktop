@@ -43,6 +43,7 @@ class BrightnessService extends Service {
   #maxBrightness = 100
   #intensity = 0
   #pendingWrite = false
+  #lastWriteAt = 0
   #flushScheduled = false
   #targetValue = -1
   #setScreenValueDebounced: (percent: number) => void
@@ -52,12 +53,11 @@ class BrightnessService extends Service {
     this.#setScreenValueDebounced = debounce(this.#scheduleFlush.bind(this), 40)
     this.#initialize()
 
-    // Periodically refresh from sysfs to catch out-of-band changes
-    // (e.g. keyboard hotkeys that call `light` directly). Cheap: one file
-    // read every 2 seconds.
+    // gate on a timestamp, not a boolean: a stalled DDC write must never
+    // disable the sysfs poll permanently
     if (this.#brightnessFile) {
       Utils.interval(2000, () => {
-        if (!this.#pendingWrite) this.#readCurrent()
+        if (Date.now() - this.#lastWriteAt > 1500) this.#readCurrent()
         return true
       })
     }
@@ -137,6 +137,7 @@ class BrightnessService extends Service {
     const value = this.#targetValue
     this.#targetValue = -1
     this.#pendingWrite = true
+    this.#lastWriteAt = Date.now()
 
     const cmd = this.#interface
       ? ['light', '-S', String(value)]
@@ -146,6 +147,7 @@ class BrightnessService extends Service {
       .catch(err => console.error('Brightness write failed:', err))
       .finally(() => {
         this.#pendingWrite = false
+        this.#lastWriteAt = Date.now()
         // If a newer target arrived while we were writing, flush again.
         if (this.#targetValue >= 0) this.#flushIfIdle()
       })
